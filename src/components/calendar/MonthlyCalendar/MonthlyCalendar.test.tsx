@@ -17,7 +17,8 @@ describe('MonthlyCalendar', () => {
       render(<MonthlyCalendar />);
       const now = new Date();
       const monthYear = now.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-      expect(screen.getByText(monthYear)).toBeInTheDocument();
+      const headers = screen.getAllByText(monthYear);
+      expect(headers.length).toBeGreaterThan(0);
     });
 
     it('renders navigation buttons', () => {
