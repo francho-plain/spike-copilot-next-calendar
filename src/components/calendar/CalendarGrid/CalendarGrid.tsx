@@ -1,7 +1,6 @@
 'use client';
 
 import { DayPicker } from 'react-day-picker';
-import 'react-day-picker/dist/style.css';
 import { CalendarEvent } from '@/lib/calendar/types';
 import { isCurrentMonth } from '@/lib/calendar/dateUtils';
 import styles from './CalendarGrid.module.css';
@@ -31,6 +30,7 @@ export default function CalendarGrid({ displayMonth, onDateSelect }: CalendarGri
         }}
         onDayClick={onDateSelect}
         showOutsideDays
+        className={styles.rdpCalendar}
       />
     </div>
   );
