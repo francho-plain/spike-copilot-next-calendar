@@ -92,15 +92,22 @@ spike-copilot-next-calendar/
 │   │   ├── page.tsx                  # Calendar page (from T021)
 │   │   └── globals.css               # Global resets
 │   ├── components/
-│   │   └── calendar/
-│   │       ├── MonthlyCalendar.tsx   # Main component (T016)
-│   │       ├── MonthlyCalendar.module.css
-│   │       ├── CalendarGrid.tsx      # react-day-picker wrapper (T017)
-│   │       ├── CalendarGrid.module.css
-│   │       ├── DayCell.tsx           # Custom day cell (T027)
-│   │       ├── DayCell.module.css
+│   │   ├── MonthlyCalendar/
+│   │   │   ├── MonthlyCalendar.tsx   # Main component (T016)
+│   │   │   ├── MonthlyCalendar.module.css
+│   │   │   └── MonthlyCalendar.test.tsx
+│   │   ├── CalendarGrid/
+│   │   │   ├── CalendarGrid.tsx      # react-day-picker wrapper (T017)
+│   │   │   ├── CalendarGrid.module.css
+│   │   │   └── CalendarGrid.test.tsx
+│   │   ├── DayCell/
+│   │   │   ├── DayCell.tsx           # Custom day cell (T027)
+│   │   │   ├── DayCell.module.css
+│   │   │   └── DayCell.test.tsx
+│   │   └── EventList/
 │   │       ├── EventList.tsx         # Event list in cells (T029)
-│   │       └── EventList.module.css
+│   │       ├── EventList.module.css
+│   │       └── EventList.test.tsx
 │   ├── lib/
 │   │   └── calendar/
 │   │       ├── dateUtils.ts          # Date helpers + getEventsForDay (T012)

@@ -50,16 +50,16 @@
 
 ### Implementation for User Story 1
 
-- [ ] T015 [P] [US1] Install and configure react-day-picker with weekStartsOn: 1 (Monday) in src/components/calendar/
-- [ ] T016 [US1] Create MonthlyCalendar component integrating react-day-picker with fixedWeeks prop in src/components/calendar/MonthlyCalendar.tsx
-- [ ] T017 [US1] Implement CalendarGrid component wrapping react-day-picker DayPicker in src/components/calendar/CalendarGrid.tsx
-- [ ] T018 [US1] Create CSS Module for CalendarGrid with 7-column layout in src/components/calendar/CalendarGrid.module.css
-- [ ] T019 [US1] Implement current day highlighting using react-day-picker modifiers in CalendarGrid.tsx
-- [ ] T020 [US1] Implement overflow day styling (opacity: 0.5) in CalendarGrid.module.css using --color-overflow-day variable
+- [ ] T015 [P] [US1] Install and configure react-day-picker with weekStartsOn: 1 (Monday)
+- [ ] T016 [US1] Create MonthlyCalendar component integrating react-day-picker with fixedWeeks prop in src/components/MonthlyCalendar/MonthlyCalendar.tsx
+- [ ] T017 [US1] Implement CalendarGrid component wrapping react-day-picker DayPicker in src/components/CalendarGrid/CalendarGrid.tsx
+- [ ] T018 [US1] Create CSS Module for CalendarGrid with 7-column layout in src/components/CalendarGrid/CalendarGrid.module.css
+- [ ] T019 [US1] Implement current day highlighting using react-day-picker modifiers in src/components/CalendarGrid/CalendarGrid.tsx
+- [ ] T020 [US1] Implement overflow day styling (opacity: 0.5) in src/components/CalendarGrid/CalendarGrid.module.css using --color-overflow-day variable
 - [ ] T021 [US1] Create calendar page in src/app/page.tsx rendering MonthlyCalendar component
-- [ ] T022 [US1] Add mobile-first responsive styles (320px base) to CalendarGrid.module.css
-- [ ] T023 [P] [US1] Create unit test verifying week headers display Mon-Sun in tests/unit/components/CalendarGrid.test.tsx
-- [ ] T024 [P] [US1] Create unit test for CalendarGrid structure (7 columns, 6 rows, 42 cells) in tests/unit/components/CalendarGrid.test.tsx
+- [ ] T022 [US1] Add mobile-first responsive styles (320px base) to src/components/CalendarGrid/CalendarGrid.module.css
+- [ ] T023 [P] [US1] Create unit test verifying week headers display Mon-Sun in src/components/CalendarGrid/CalendarGrid.test.tsx
+- [ ] T024 [P] [US1] Create unit test for CalendarGrid structure (7 columns, 6 rows, 42 cells) in src/components/CalendarGrid/CalendarGrid.test.tsx
 - [ ] T025 [US1] Create accessibility test for calendar grid WCAG compliance in tests/accessibility/calendar-grid.a11y.test.tsx
 - [ ] T026 [US1] Create E2E test for calendar grid display in tests/e2e/calendar-display.spec.ts
 
@@ -76,19 +76,19 @@
 
 ### Implementation for User Story 2
 
-- [ ] T027 [P] [US2] Create DayCell component extending react-day-picker Day component in src/components/calendar/DayCell.tsx
-- [ ] T028 [P] [US2] Create CSS Module for DayCell with event display styles in src/components/calendar/DayCell.module.css
-- [ ] T029 [P] [US2] Create EventList component to render multiple events in src/components/calendar/EventList.tsx
-- [ ] T030 [P] [US2] Create CSS Module for EventList in src/components/calendar/EventList.module.css
-- [ ] T031 [US2] Integrate DayCell with CalendarGrid using react-day-picker components prop in CalendarGrid.tsx
+- [ ] T027 [P] [US2] Create DayCell component extending react-day-picker Day component in src/components/DayCell/DayCell.tsx
+- [ ] T028 [P] [US2] Create CSS Module for DayCell with event display styles in src/components/DayCell/DayCell.module.css
+- [ ] T029 [P] [US2] Create EventList component to render multiple events in src/components/EventList/EventList.tsx
+- [ ] T030 [P] [US2] Create CSS Module for EventList in src/components/EventList/EventList.module.css
+- [ ] T031 [US2] Integrate DayCell with CalendarGrid using react-day-picker components prop in src/components/CalendarGrid/CalendarGrid.tsx
 - [ ] T032 [US2] Implement event filtering by date in DayCell using getEventsForDay utility
-- [ ] T033 [US2] Implement EventList rendering with event titles (or "(No title)" fallback) in EventList.tsx
-- [ ] T034 [US2] Add "+N more" text indicator for days with >3 events in EventList.tsx
-- [ ] T035 [US2] Handle empty day state (no events) in DayCell.tsx
-- [ ] T036 [US2] Style event display with optional event colors in EventList.module.css
-- [ ] T037 [US2] Add edge case handling for long event titles (>50 chars, truncate with ellipsis) in EventList.module.css
-- [ ] T038 [P] [US2] Create unit test for DayCell component in tests/unit/components/DayCell.test.tsx
-- [ ] T039 [P] [US2] Create unit test for EventList with multiple events in tests/unit/components/EventList.test.tsx
+- [ ] T033 [US2] Implement EventList rendering with event titles (or "(No title)" fallback) in src/components/EventList/EventList.tsx
+- [ ] T034 [US2] Add "+N more" text indicator for days with >3 events in src/components/EventList/EventList.tsx
+- [ ] T035 [US2] Handle empty day state (no events) in src/components/DayCell/DayCell.tsx
+- [ ] T036 [US2] Style event display with optional event colors in src/components/EventList/EventList.module.css
+- [ ] T037 [US2] Add edge case handling for long event titles (>50 chars, truncate with ellipsis) in src/components/EventList/EventList.module.css
+- [ ] T038 [P] [US2] Create unit test for DayCell component in src/components/DayCell/DayCell.test.tsx
+- [ ] T039 [P] [US2] Create unit test for EventList with multiple events in src/components/EventList/EventList.test.tsx
 - [ ] T040 [P] [US2] Create unit test for getEventsForDay utility in tests/unit/lib/dateUtils.test.ts
 - [ ] T041 [US2] Create accessibility test for event display in tests/accessibility/event-display.a11y.test.tsx
 - [ ] T042 [US2] Create E2E test for event visibility in tests/e2e/event-display.spec.ts
@@ -106,12 +106,12 @@
 
 ### Implementation for User Story 3
 
-- [ ] T043 [P] [US3] Add tablet breakpoint (768px) styles to CalendarGrid.module.css
-- [ ] T044 [P] [US3] Add desktop breakpoint (1024px) styles to CalendarGrid.module.css
-- [ ] T045 [P] [US3] Implement mobile-specific event truncation in EventList.module.css
-- [ ] T046 [P] [US3] Add responsive font sizing using CSS clamp in variables.css
-- [ ] T047 [US3] Adjust DayCell height across breakpoints (60px mobile, 80px tablet, 100px desktop) in DayCell.module.css
-- [ ] T048 [US3] Implement touch-friendly tap targets (min 44x44px) for mobile in DayCell.module.css
+- [ ] T043 [P] [US3] Add tablet breakpoint (768px) styles to src/components/CalendarGrid/CalendarGrid.module.css
+- [ ] T044 [P] [US3] Add desktop breakpoint (1024px) styles to src/components/CalendarGrid/CalendarGrid.module.css
+- [ ] T045 [P] [US3] Implement mobile-specific event truncation in src/components/EventList/EventList.module.css
+- [ ] T046 [P] [US3] Add responsive font sizing using CSS clamp in src/styles/variables.css
+- [ ] T047 [US3] Adjust DayCell height across breakpoints (60px mobile, 80px tablet, 100px desktop) in src/components/DayCell/DayCell.module.css
+- [ ] T048 [US3] Implement touch-friendly tap targets (min 44x44px) for mobile in src/components/DayCell/DayCell.module.css
 - [ ] T049 [US3] Add responsive padding and spacing across all components
 - [ ] T050 [P] [US3] Create E2E test for mobile viewport (375px) in tests/e2e/responsive-mobile.spec.ts
 - [ ] T051 [P] [US3] Create E2E test for tablet viewport (768px) in tests/e2e/responsive-tablet.spec.ts
@@ -127,9 +127,9 @@
 **Duration**: ~8 hours  
 **Parallelizable**: 7 tasks  
 
-- [ ] T053 [P] Add ARIA labels for month navigation (future enhancement) to CalendarGrid.tsx
-- [ ] T054 [P] Implement keyboard navigation (Arrow keys: day nav, Tab: event nav, Enter/Space: select) per WCAG 2.1 AA in CalendarGrid.tsx
-- [ ] T055 [P] Add loading states for calendar rendering in MonthlyCalendar.tsx
+- [ ] T053 [P] Add ARIA labels for month navigation (future enhancement) to src/components/CalendarGrid/CalendarGrid.tsx
+- [ ] T054 [P] Implement keyboard navigation (Arrow keys: day nav, Tab: event nav, Enter/Space: select) per WCAG 2.1 AA in src/components/CalendarGrid/CalendarGrid.tsx
+- [ ] T055 [P] Add loading states for calendar rendering in src/components/MonthlyCalendar/MonthlyCalendar.tsx
 - [ ] T056 [P] Optimize CSS variable usage across all components
 - [ ] T057 [P] Create integration test for all user stories combined in tests/unit/integration/calendar-full.test.tsx
 - [ ] T058 [P] Create performance test verifying calendar renders <1s (NFR-001) in tests/performance/render-time.test.ts
