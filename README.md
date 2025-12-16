@@ -7,6 +7,7 @@ A WCAG 2.1 AA compliant monthly calendar application built with Next.js, TypeScr
 This project implements a monthly calendar view that displays events with proper accessibility support, responsive design, and test-driven development practices.
 
 **Features**:
+
 - 📅 Fixed 6-week grid (42 cells) monthly calendar
 - ♿ WCAG 2.1 Level AA accessibility compliance
 - 📱 Responsive design (320px - 1920px+)
@@ -97,17 +98,20 @@ spike-copilot-next-calendar/
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone <repository-url>
 cd spike-copilot-next-calendar
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Verify TypeScript compilation:
+
 ```bash
 npm run lint
 ```
@@ -115,6 +119,7 @@ npm run lint
 ### Development
 
 Start the development server:
+
 ```bash
 npm run dev
 ```
@@ -124,11 +129,13 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ### Testing
 
 Run all tests with coverage:
+
 ```bash
 npm test
 ```
 
 Run specific test suites:
+
 ```bash
 npm run test:watch          # Watch mode
 npm run test:a11y           # Accessibility tests
@@ -208,6 +215,7 @@ footer (optional)
 **Types**: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`, `perf`
 
 **Examples**:
+
 ```
 feat(calendar): add monthly grid with react-day-picker
 fix(calendar-grid): correct 6-week layout calculation
@@ -218,11 +226,13 @@ docs: update README with setup instructions
 ## 🐛 Known Issues & Roadmap
 
 ### Phase 1 (Current)
+
 - [x] Project setup complete
 - [ ] Phase 2: Foundational types & utilities
 - [ ] Phase 3: Calendar grid (MVP)
 
 ### Future Phases
+
 - Event creation/editing
 - Month/year navigation
 - Recurring events
@@ -234,6 +244,7 @@ See [Out of Scope](./specs/001-monthly-calendar-view/spec.md#out-of-scope-phase-
 ## 📞 Support & Contribution
 
 For issues, questions, or contributions:
+
 1. Check [specification](./specs/001-monthly-calendar-view/spec.md) for requirements
 2. Review [constitution](./specs/001-monthly-calendar-view/../../.specify/memory/constitution.md) for principles
 3. Follow [tasks](./specs/001-monthly-calendar-view/tasks.md) for implementation order

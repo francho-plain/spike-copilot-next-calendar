@@ -5,6 +5,6 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['date-fns'],
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

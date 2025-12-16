@@ -5,18 +5,18 @@
 
 :root {
   /* ========== COLORS ========== */
-  
+
   /* Primary Palette */
   --color-primary: #3b82f6;
   --color-primary-dark: #1d4ed8;
   --color-primary-light: #dbeafe;
-  
+
   /* Status Colors */
   --color-success: #10b981;
   --color-warning: #f59e0b;
   --color-error: #ef4444;
   --color-info: #06b6d4;
-  
+
   /* Semantic Colors */
   --color-today: #ef4444;
   --color-overflow-day: rgba(0, 0, 0, 0.3);
@@ -26,22 +26,23 @@
   --color-text: #111827;
   --color-text-secondary: #6b7280;
   --color-text-tertiary: #9ca3af;
-  
+
   /* ========== SPACING ========== */
-  
-  --spacing-xs: 0.25rem;    /* 4px */
-  --spacing-sm: 0.5rem;     /* 8px */
-  --spacing-md: 1rem;       /* 16px */
-  --spacing-lg: 1.5rem;     /* 24px */
-  --spacing-xl: 2rem;       /* 32px */
-  --spacing-2xl: 3rem;      /* 48px */
-  
+
+  --spacing-xs: 0.25rem; /* 4px */
+  --spacing-sm: 0.5rem; /* 8px */
+  --spacing-md: 1rem; /* 16px */
+  --spacing-lg: 1.5rem; /* 24px */
+  --spacing-xl: 2rem; /* 32px */
+  --spacing-2xl: 3rem; /* 48px */
+
   /* ========== TYPOGRAPHY ========== */
-  
-  --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+
+  --font-family-base:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   --font-family-mono: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
-  
+
   /* Font Sizes - Responsive with clamp */
   --font-size-xs: clamp(12px, 2vw, 14px);
   --font-size-sm: clamp(13px, 2.5vw, 15px);
@@ -49,52 +50,52 @@
   --font-size-lg: clamp(16px, 3.5vw, 18px);
   --font-size-xl: clamp(18px, 4vw, 20px);
   --font-size-2xl: clamp(20px, 4.5vw, 24px);
-  
+
   /* Line Heights */
   --line-height-tight: 1.25;
   --line-height-normal: 1.5;
   --line-height-relaxed: 1.75;
-  
+
   /* Font Weights */
   --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
-  
+
   /* ========== SHADOWS ========== */
-  
+
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-  
+
   /* ========== BORDER RADIUS ========== */
-  
-  --radius-sm: 0.25rem;   /* 4px */
-  --radius-md: 0.5rem;    /* 8px */
-  --radius-lg: 1rem;      /* 16px */
+
+  --radius-sm: 0.25rem; /* 4px */
+  --radius-md: 0.5rem; /* 8px */
+  --radius-lg: 1rem; /* 16px */
   --radius-full: 9999px;
-  
+
   /* ========== TRANSITIONS ========== */
-  
+
   --transition-fast: 150ms ease-in-out;
   --transition-base: 300ms ease-in-out;
   --transition-slow: 500ms ease-in-out;
-  
+
   /* ========== Z-INDEX ========== */
-  
+
   --z-dropdown: 1000;
   --z-modal: 1010;
   --z-tooltip: 1020;
   --z-notification: 1030;
-  
+
   /* ========== BREAKPOINTS ========== */
-  
+
   /* Mobile-first approach */
   --breakpoint-sm: 640px;
-  --breakpoint-md: 768px;   /* Tablet */
-  --breakpoint-lg: 1024px;  /* Desktop */
+  --breakpoint-md: 768px; /* Tablet */
+  --breakpoint-lg: 1024px; /* Desktop */
   --breakpoint-xl: 1280px;
   --breakpoint-2xl: 1536px;
 }
