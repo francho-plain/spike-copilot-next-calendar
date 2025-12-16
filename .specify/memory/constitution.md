@@ -1,4 +1,4 @@
-# Project Constitution v1.0.0
+# Project Constitution v1.1.0
 
 ## Mission
 Deliver a Next.js calendar application that is accessible (WCAG 2.1 AA), testable, and maintainable with strong typing and clean code practices.
@@ -63,6 +63,23 @@ Deliver a Next.js calendar application that is accessible (WCAG 2.1 AA), testabl
 - **Validation**: TypeScript compiler errors block builds
 - **Process**: Type-driven development (design types → implement components)
 
+### VIII. Component Structure Organization
+- **Mandate**: Each component must be self-contained in its own directory
+- **Structure**: Each component directory MUST contain exactly 3 files:
+  1. `ComponentName.tsx` - React component code
+  2. `ComponentName.module.css` - Component styling (CSS Module)
+  3. `ComponentName.test.tsx` - Unit tests for the component
+- **Path Pattern**: `src/components/<category>/<ComponentName>/`
+- **Example**:
+  ```
+  src/components/calendar/MonthlyCalendar/
+  ├── MonthlyCalendar.tsx
+  ├── MonthlyCalendar.module.css
+  └── MonthlyCalendar.test.tsx
+  ```
+- **Benefits**: High cohesion (component + styles + tests together), easy to locate related files, scalable structure
+- **Validation**: Directory structure review in code reviews, linting rules enforce file locations
+
 ---
 
 ## Quality Gates
@@ -72,7 +89,8 @@ Every commit must pass:
 1. ✅ TypeScript compiler (no errors or warnings)
 2. ✅ ESLint rules (no violations)
 3. ✅ Prettier formatting (all files formatted)
-4. ✅ Unit tests (≥80% coverage, all passing)
+4. ✅ Component structure validation (each component: .tsx + .module.css + .test.tsx)
+5. ✅ Unit tests (≥80% coverage, all passing)
 
 ### Pre-Merge Validation
 Every branch merge requires:
@@ -103,4 +121,5 @@ Each phase must deliver:
 ---
 
 ## Version History
+- **v1.1.0** (2025-12-16): Added Principle VIII - Component Structure Organization (each component: .tsx + .module.css + .test.tsx)
 - **v1.0.0** (2025-12-16): Initial constitution with 7 core principles ratified for monthly calendar feature
