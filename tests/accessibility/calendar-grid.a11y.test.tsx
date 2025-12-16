@@ -2,7 +2,6 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import CalendarGrid from '@/components/calendar/CalendarGrid/CalendarGrid';
 import { getMockEventsForMonth } from '@/lib/data/mockData';
-import { a11yUtils } from '@/../../tests/accessibility/setup';
 
 describe('CalendarGrid Accessibility', () => {
   const displayMonth = new Date(2025, 11);
