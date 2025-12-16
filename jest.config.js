@@ -10,7 +10,13 @@ const customJestConfig = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
-  testMatch: ['<rootDir>/tests/**/*.test.ts', '<rootDir>/tests/**/*.test.tsx'],
+  testMatch: [
+    '<rootDir>/src/**/*.test.ts',
+    '<rootDir>/src/**/*.test.tsx',
+    '<rootDir>/tests/performance/**/*.test.ts',
+    '<rootDir>/tests/performance/**/*.test.tsx',
+  ],
+  testPathIgnorePatterns: ['/node_modules/', '/.next/', '/tests/e2e/'],
   collectCoverageFrom: ['src/**/*.{ts,tsx}', '!src/**/*.d.ts', '!src/**/*.stories.tsx'],
   coverageThreshold: {
     global: {

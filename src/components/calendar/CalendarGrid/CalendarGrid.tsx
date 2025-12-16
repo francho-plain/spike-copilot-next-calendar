@@ -12,6 +12,8 @@ export interface CalendarGridProps {
 }
 
 export default function CalendarGrid({ displayMonth, onDateSelect }: CalendarGridProps) {
+  const today = new Date();
+
   return (
     <div className={styles.gridContainer}>
       <DayPicker
@@ -20,13 +22,13 @@ export default function CalendarGrid({ displayMonth, onDateSelect }: CalendarGri
         fixedWeeks
         weekStartsOn={1}
         modifiers={{
-          today: new Date(),
+          today: today,
           currentMonth: (day) => isCurrentMonth(day, displayMonth),
           overflow: (day) => !isCurrentMonth(day, displayMonth),
         }}
         modifiersClassNames={{
-          today: styles.today,
-          overflow: styles.overflow,
+          today: 'today',
+          overflow: 'overflow',
         }}
         onDayClick={onDateSelect}
         showOutsideDays
