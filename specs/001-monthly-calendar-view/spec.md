@@ -5,7 +5,7 @@
 **Status**: Specification Complete  
 **ADO Link**: User Story #97 "Vista mensual"  
 **Priority**: P1 (MVP-critical)  
-**Target Release**: Sprint 1  
+**Target Release**: Sprint 1
 
 ---
 
@@ -21,9 +21,10 @@ Enable users to view a monthly calendar grid displaying event data with proper e
 
 **As a** user  
 **I want to** see a monthly calendar grid with 7 columns and 6 rows  
-**So that** I can easily navigate and understand the current month layout  
+**So that** I can easily navigate and understand the current month layout
 
 **Description**:
+
 - Display a calendar with 7 columns (Monday through Sunday)
 - Use a fixed 6-week grid (42 cells total) for visual consistency
 - Show the current month's dates plus overflow dates from adjacent months
@@ -48,9 +49,10 @@ Enable users to view a monthly calendar grid displaying event data with proper e
 
 **As a** user  
 **I want to** see events displayed within their corresponding calendar day cells  
-**So that** I can understand my schedule at a glance without navigating to a separate view  
+**So that** I can understand my schedule at a glance without navigating to a separate view
 
 **Description**:
+
 - Display event titles within each day cell
 - Handle multiple events per day with a visual indicator
 - Support optional event colors for quick visual categorization
@@ -73,9 +75,10 @@ Enable users to view a monthly calendar grid displaying event data with proper e
 
 **As a** user  
 **I want to** access the calendar on any device (mobile, tablet, desktop)  
-**So that** I can manage my schedule regardless of my device choice  
+**So that** I can manage my schedule regardless of my device choice
 
 **Description**:
+
 - Adapt calendar styling across 3 major breakpoints (320px mobile, 768px tablet, 1024px+ desktop)
 - Adjust cell heights, font sizes, and spacing per device
 - Ensure touch targets meet minimum 44×44px requirement on mobile
@@ -138,12 +141,14 @@ Enable users to view a monthly calendar grid displaying event data with proper e
 ## Assumptions & Constraints
 
 ### Assumptions
+
 - Week starts on Monday (ISO 8601 standard per spec assumption)
 - Fixed 6-week grid is acceptable (always shows 42 cells regardless of month)
 - Event data comes from a single source (mock data initially, API later)
 - Users have modern browsers (ES2020+ support)
 
 ### Constraints
+
 - Performance budget: <1s render time (Lighthouse >90)
 - Accessibility: WCAG 2.1 AA mandatory (no exceptions)
 - Browser support: Chrome, Firefox, Safari, Edge (latest 2 versions)
@@ -151,6 +156,7 @@ Enable users to view a monthly calendar grid displaying event data with proper e
 - Styling: CSS Modules only (no Tailwind, no styled-components)
 
 ### Dependencies
+
 - react-day-picker v9 (library handles grid generation, accessibility, keyboard nav)
 - date-fns (date manipulation, included with react-day-picker)
 - Next.js 14+ App Router
@@ -182,14 +188,13 @@ Enable users to view a monthly calendar grid displaying event data with proper e
 
 ## Sign-Off
 
-| Role | Name | Date | Status |
-|------|------|------|--------|
-| Product Owner | Francho | 2025-12-16 | ✅ Approved |
-| Tech Lead | GitHub Copilot | 2025-12-16 | ✅ Approved |
-| QA Lead | TBD | - | ⏳ Pending |
+| Role          | Name           | Date       | Status      |
+| ------------- | -------------- | ---------- | ----------- |
+| Product Owner | Francho        | 2025-12-16 | ✅ Approved |
+| Tech Lead     | GitHub Copilot | 2025-12-16 | ✅ Approved |
+| QA Lead       | TBD            | -          | ⏳ Pending  |
 
 ---
 
 **Last Updated**: 2025-12-16  
 **Version**: 1.0.0
-

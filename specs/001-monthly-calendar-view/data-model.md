@@ -1,7 +1,7 @@
 # Data Model: Monthly Calendar View
 
 **Purpose**: Define entity structures for calendar data, aligned with API readiness and react-day-picker integration  
-**Status**: Complete with react-day-picker integration  
+**Status**: Complete with react-day-picker integration
 
 ---
 
@@ -14,19 +14,19 @@
 ```typescript
 interface CalendarEvent {
   // Required fields
-  id: string                    // Unique identifier (UUID preferred)
-  title: string                 // Event title for display
-  date: Date                    // Date the event occurs
+  id: string; // Unique identifier (UUID preferred)
+  title: string; // Event title for display
+  date: Date; // Date the event occurs
 
   // Optional fields
-  startTime?: string            // ISO 8601 time format (e.g., "09:00")
-  endTime?: string              // ISO 8601 time format (e.g., "09:30")
-  description?: string          // Detailed event description
-  location?: string             // Event location (address, room, etc.)
-  attendees?: string[]          // Email addresses of attendees
-  color?: string                // Hex color for visual categorization
-  isAllDay?: boolean            // Flag for all-day events
-  recurrence?: RecurrenceRule   // (Future) Recurring event configuration
+  startTime?: string; // ISO 8601 time format (e.g., "09:00")
+  endTime?: string; // ISO 8601 time format (e.g., "09:30")
+  description?: string; // Detailed event description
+  location?: string; // Event location (address, room, etc.)
+  attendees?: string[]; // Email addresses of attendees
+  color?: string; // Hex color for visual categorization
+  isAllDay?: boolean; // Flag for all-day events
+  recurrence?: RecurrenceRule; // (Future) Recurring event configuration
 }
 
 // Example instances
@@ -37,7 +37,7 @@ const event1: CalendarEvent = {
   startTime: '09:00',
   endTime: '09:30',
   color: '#3B82F6',
-}
+};
 
 const event2: CalendarEvent = {
   id: 'evt-002',
@@ -45,7 +45,7 @@ const event2: CalendarEvent = {
   date: new Date(2025, 11, 20),
   isAllDay: true,
   color: '#EF4444',
-}
+};
 ```
 
 ### RecurrenceRule (Future Enhancement)
@@ -54,12 +54,12 @@ const event2: CalendarEvent = {
 
 ```typescript
 interface RecurrenceRule {
-  frequency: 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'YEARLY'
-  interval?: number             // Every N units (e.g., every 2 weeks)
-  endDate?: Date                // When recurrence ends
-  count?: number                // How many occurrences
-  byWeekDay?: ('MO' | 'TU' | 'WE' | 'TH' | 'FR' | 'SA' | 'SU')[]
-  byMonthDay?: number[]         // Days of month (1-31)
+  frequency: 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'YEARLY';
+  interval?: number; // Every N units (e.g., every 2 weeks)
+  endDate?: Date; // When recurrence ends
+  count?: number; // How many occurrences
+  byWeekDay?: ('MO' | 'TU' | 'WE' | 'TH' | 'FR' | 'SA' | 'SU')[];
+  byMonthDay?: number[]; // Days of month (1-31)
 }
 ```
 
@@ -69,9 +69,9 @@ interface RecurrenceRule {
 
 ```typescript
 interface CalendarMonth {
-  year: number                  // Calendar year (e.g., 2025)
-  month: number                 // Month (0-11, where 0 = January)
-  events: CalendarEvent[]       // All events in this month
+  year: number; // Calendar year (e.g., 2025)
+  month: number; // Month (0-11, where 0 = January)
+  events: CalendarEvent[]; // All events in this month
 }
 
 // Example usage
@@ -79,7 +79,7 @@ const december2025: CalendarMonth = {
   year: 2025,
   month: 11,
   events: mockEvents,
-}
+};
 ```
 
 ### CalendarDay (Simplified with react-day-picker)
@@ -159,6 +159,7 @@ import { DayPicker } from 'react-day-picker'
 ```
 
 **Calendar Structure**:
+
 - **Weeks**: Always 6 weeks (42 cells per FR-002)
 - **Days**: 7 columns (Monday-Sunday per FR-006)
 - **Overflow**: Previous/next month dates included (opacity: 0.5 per FR-005)
@@ -172,6 +173,7 @@ import { DayPicker } from 'react-day-picker'
 4. **Event Display**: EventList component renders filtered events
 
 **Why Simplified?**
+
 - Library handles: grid layout, accessibility, keyboard navigation
 - We handle: custom styling, event display, data filtering
 
@@ -189,13 +191,13 @@ import { DayPicker } from 'react-day-picker'
  * @returns Filtered events for the day
  */
 export function getEventsForDay(day: Date, events: CalendarEvent[]): CalendarEvent[] {
-  return events.filter(event => {
+  return events.filter((event) => {
     return (
       event.date.getFullYear() === day.getFullYear() &&
       event.date.getMonth() === day.getMonth() &&
       event.date.getDate() === day.getDate()
-    )
-  })
+    );
+  });
 }
 
 /**
@@ -207,27 +209,28 @@ export function formatDateDisplay(date: Date): string {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
-  }).format(date)
+  }).format(date);
 }
 
 /**
  * Check if a date is today
  */
 export function isToday(date: Date): boolean {
-  const today = new Date()
+  const today = new Date();
   return (
     date.getFullYear() === today.getFullYear() &&
     date.getMonth() === today.getMonth() &&
     date.getDate() === today.getDate()
-  )
+  );
 }
 
 /**
  * Check if a date is in the current month
  */
 export function isCurrentMonth(date: Date, displayMonth: Date): boolean {
-  return date.getMonth() === displayMonth.getMonth() &&
-         date.getFullYear() === displayMonth.getFullYear()
+  return (
+    date.getMonth() === displayMonth.getMonth() && date.getFullYear() === displayMonth.getFullYear()
+  );
 }
 ```
 
@@ -238,7 +241,7 @@ export function isCurrentMonth(date: Date, displayMonth: Date): boolean {
 ### src/lib/data/mockData.ts
 
 ```typescript
-import { CalendarEvent } from '@/lib/calendar/types'
+import { CalendarEvent } from '@/lib/calendar/types';
 
 export const mockEvents: CalendarEvent[] = [
   {
@@ -266,10 +269,11 @@ export const mockEvents: CalendarEvent[] = [
     color: '#10B981',
   },
   // ... more mock events for testing edge cases
-]
+];
 ```
 
 **Edge Cases Covered**:
+
 - All-day events (no time)
 - Multiple events on same day (tests "+N more" indicator)
 - Long titles (tests truncation)
@@ -281,25 +285,27 @@ export const mockEvents: CalendarEvent[] = [
 ## API Migration Path
 
 ### Phase 1-2: Mock Data
+
 ```typescript
-import { mockEvents } from '@/lib/data/mockData'
+import { mockEvents } from '@/lib/data/mockData';
 
 // Components directly use mock data
-const events = mockEvents
+const events = mockEvents;
 ```
 
 ### Phase 4+: API Integration
+
 ```typescript
 // New API function (no component changes needed)
 export async function fetchEvents(month: Date): Promise<CalendarEvent[]> {
   const response = await fetch(
     `/api/events?year=${month.getFullYear()}&month=${month.getMonth() + 1}`
-  )
-  return response.json()
+  );
+  return response.json();
 }
 
 // Component usage (identical to mock version)
-const events = await fetchEvents(new Date(2025, 11))
+const events = await fetchEvents(new Date(2025, 11));
 ```
 
 **Key Design Principle**: The `CalendarEvent` interface is defined once and works with both mock and API data. Component code needs zero changes.
@@ -312,40 +318,40 @@ const events = await fetchEvents(new Date(2025, 11))
 
 ```typescript
 export interface CalendarEvent {
-  id: string
-  title: string
-  date: Date
-  startTime?: string
-  endTime?: string
-  description?: string
-  location?: string
-  attendees?: string[]
-  color?: string
-  isAllDay?: boolean
-  recurrence?: RecurrenceRule
+  id: string;
+  title: string;
+  date: Date;
+  startTime?: string;
+  endTime?: string;
+  description?: string;
+  location?: string;
+  attendees?: string[];
+  color?: string;
+  isAllDay?: boolean;
+  recurrence?: RecurrenceRule;
 }
 
 export interface RecurrenceRule {
-  frequency: 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'YEARLY'
-  interval?: number
-  endDate?: Date
-  count?: number
-  byWeekDay?: ('MO' | 'TU' | 'WE' | 'TH' | 'FR' | 'SA' | 'SU')[]
-  byMonthDay?: number[]
+  frequency: 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'YEARLY';
+  interval?: number;
+  endDate?: Date;
+  count?: number;
+  byWeekDay?: ('MO' | 'TU' | 'WE' | 'TH' | 'FR' | 'SA' | 'SU')[];
+  byMonthDay?: number[];
 }
 
 export interface CalendarMonth {
-  year: number
-  month: number
-  events: CalendarEvent[]
+  year: number;
+  month: number;
+  events: CalendarEvent[];
 }
 
 export interface CustomDayCellProps {
-  day: Date
-  displayMonth: Date
-  events: CalendarEvent[]
-  isToday: boolean
-  isCurrentMonth: boolean
+  day: Date;
+  displayMonth: Date;
+  events: CalendarEvent[];
+  isToday: boolean;
+  isCurrentMonth: boolean;
 }
 ```
 
@@ -354,6 +360,7 @@ export interface CustomDayCellProps {
 ## Database Schema Reference (Future API)
 
 ### Events Table
+
 ```sql
 CREATE TABLE events (
   id UUID PRIMARY KEY,
@@ -389,15 +396,15 @@ CREATE TABLE recurrence_rules (
 
 ## Summary
 
-| Component | Responsibility | Status |
-|-----------|-----------------|--------|
-| **CalendarEvent** | Single event entity | ✅ Defined (RFC 5545 compatible) |
-| **RecurrenceRule** | Event repetition | ⏳ Future (Phase 3+) |
-| **CalendarMonth** | Month-level container | ✅ Defined |
-| **DayProps** | Grid cell from react-day-picker | ✅ From library |
-| **dateUtils** | Date manipulation helpers | ✅ Designed (to implement in T012) |
-| **mockData** | Sample events for development | ✅ Designed (to implement in T011) |
-| **API Migration** | Seamless mock→API swap | ✅ Designed (Phase 4+) |
+| Component          | Responsibility                  | Status                             |
+| ------------------ | ------------------------------- | ---------------------------------- |
+| **CalendarEvent**  | Single event entity             | ✅ Defined (RFC 5545 compatible)   |
+| **RecurrenceRule** | Event repetition                | ⏳ Future (Phase 3+)               |
+| **CalendarMonth**  | Month-level container           | ✅ Defined                         |
+| **DayProps**       | Grid cell from react-day-picker | ✅ From library                    |
+| **dateUtils**      | Date manipulation helpers       | ✅ Designed (to implement in T012) |
+| **mockData**       | Sample events for development   | ✅ Designed (to implement in T011) |
+| **API Migration**  | Seamless mock→API swap          | ✅ Designed (Phase 4+)             |
 
 ---
 

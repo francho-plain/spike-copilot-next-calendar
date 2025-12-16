@@ -1,6 +1,6 @@
 /** Mock calendar events for development and testing */
 
-import { CalendarEvent } from './calendar/types';
+import { CalendarEvent } from '../calendar/types';
 
 const REFERENCE_DATE = new Date(2025, 11, 16);
 const REFERENCE_YEAR = REFERENCE_DATE.getFullYear();

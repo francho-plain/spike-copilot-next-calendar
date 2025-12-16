@@ -2,18 +2,20 @@
 
 **Phase**: Phase 0 (Pre-Implementation)  
 **Objective**: Evaluate existing calendar libraries for WCAG 2.1 AA compliance, bundle size, TypeScript support, and licensing  
-**Decision Made**: ✅ **react-day-picker v9** selected  
+**Decision Made**: ✅ **react-day-picker v9** selected
 
 ---
 
 ## Task 1: React Calendar Library Evaluation
 
 ### Research Question
+
 Should we build a custom calendar grid component or use an existing library?
 
 ### Libraries Evaluated
 
 #### Candidate 1: react-day-picker v9 ⭐ SELECTED
+
 - **Package**: `react-day-picker`
 - **Version**: 9.x
 - **License**: MIT ✅
@@ -36,6 +38,7 @@ Should we build a custom calendar grid component or use an existing library?
 - **Decision**: ✅ ADOPT - Best balance of features, bundle size, and accessibility
 
 #### Candidate 2: react-calendar
+
 - **Package**: `react-calendar`
 - **Version**: 4.x
 - **License**: MIT ✅
@@ -54,6 +57,7 @@ Should we build a custom calendar grid component or use an existing library?
 - **Decision**: ❌ REJECTED - Accessibility gaps disqualify for feature requirements
 
 #### Candidate 3: react-big-calendar
+
 - **Package**: `react-big-calendar`
 - **Version**: 1.x
 - **License**: MIT ✅
@@ -73,6 +77,7 @@ Should we build a custom calendar grid component or use an existing library?
 - **Decision**: ❌ REJECTED - Bundle size and over-engineering
 
 #### Candidate 4: FullCalendar
+
 - **Package**: `@fullcalendar/react`
 - **Version**: 6.x
 - **License**: ❌ Proprietary/Commercial (requires license for commercial use)
@@ -92,22 +97,24 @@ Should we build a custom calendar grid component or use an existing library?
 
 ### Comparison Matrix
 
-| Feature | react-day-picker | react-calendar | react-big-calendar | FullCalendar |
-|---------|------------------|----------------|-------------------|------------|
-| License | ✅ MIT | ✅ MIT | ✅ MIT | ❌ Commercial |
-| Bundle Size | ✅ 18.9KB | 🟡 25KB | ❌ 50KB+ | ❌ 100KB+ |
-| WCAG 2.1 AA | ✅ Yes | ⚠️ Partial | ⚠️ Partial | ✅ Yes |
-| TypeScript | ✅ Native | ✅ Yes | ⚠️ @types | ✅ Yes |
-| Keyboard Nav | ✅ Full | ⚠️ Limited | ⚠️ Limited | ✅ Full |
-| React 18+ | ✅ Yes | ✅ Yes | ✅ Yes | ✅ Yes |
-| Custom Rendering | ✅ Excellent | 🟡 Good | 🟡 Limited | ❌ Limited |
-| Active Maintenance | ✅ Yes (2024) | ✅ Yes (2024) | ✅ Yes (2023) | ✅ Yes (2024) |
-| **Overall Score** | **🏆 9/10** | 6/10 | 5/10 | 4/10 |
+| Feature            | react-day-picker | react-calendar | react-big-calendar | FullCalendar  |
+| ------------------ | ---------------- | -------------- | ------------------ | ------------- |
+| License            | ✅ MIT           | ✅ MIT         | ✅ MIT             | ❌ Commercial |
+| Bundle Size        | ✅ 18.9KB        | 🟡 25KB        | ❌ 50KB+           | ❌ 100KB+     |
+| WCAG 2.1 AA        | ✅ Yes           | ⚠️ Partial     | ⚠️ Partial         | ✅ Yes        |
+| TypeScript         | ✅ Native        | ✅ Yes         | ⚠️ @types          | ✅ Yes        |
+| Keyboard Nav       | ✅ Full          | ⚠️ Limited     | ⚠️ Limited         | ✅ Full       |
+| React 18+          | ✅ Yes           | ✅ Yes         | ✅ Yes             | ✅ Yes        |
+| Custom Rendering   | ✅ Excellent     | 🟡 Good        | 🟡 Limited         | ❌ Limited    |
+| Active Maintenance | ✅ Yes (2024)    | ✅ Yes (2024)  | ✅ Yes (2023)      | ✅ Yes (2024) |
+| **Overall Score**  | **🏆 9/10**      | 6/10           | 5/10               | 4/10          |
 
 ### Recommendation
+
 **✅ Adopt react-day-picker v9**
 
 **Rationale**:
+
 1. **Bundle Efficiency**: 18.9KB vs 25KB-100KB alternatives (smallest impact on web performance)
 2. **Accessibility**: WCAG 2.1 AA compliant out-of-box with semantic HTML + ARIA
 3. **Licensing**: MIT fully compatible with constitution Principle V (Commercial Licensing)
@@ -121,9 +128,11 @@ Should we build a custom calendar grid component or use an existing library?
 ## Task 2: Date Manipulation Library Selection
 
 ### Decision
+
 **✅ Use date-fns** (included as peer dependency of react-day-picker)
 
 **Rationale**:
+
 - Immutable API (prevents bugs)
 - Tree-shakeable (only import what you use)
 - 28.3KB unpacked, but only core functions needed
@@ -131,14 +140,15 @@ Should we build a custom calendar grid component or use an existing library?
 - Already required by react-day-picker
 
 **Usage Patterns**:
-```typescript
-import { format, startOfMonth, endOfMonth } from 'date-fns'
-import { getEventsForDay } from '@/lib/calendar/dateUtils'
 
-const today = new Date()
-const monthStart = startOfMonth(today)
-const dayLabel = format(today, 'EEEE, MMMM d, yyyy')
-const eventsOnDay = getEventsForDay(today, events)
+```typescript
+import { format, startOfMonth, endOfMonth } from 'date-fns';
+import { getEventsForDay } from '@/lib/calendar/dateUtils';
+
+const today = new Date();
+const monthStart = startOfMonth(today);
+const dayLabel = format(today, 'EEEE, MMMM d, yyyy');
+const eventsOnDay = getEventsForDay(today, events);
 ```
 
 ---
@@ -146,9 +156,11 @@ const eventsOnDay = getEventsForDay(today, events)
 ## Task 3: Fixed 6-Week Grid Strategy
 
 ### Decision
+
 **✅ Use react-day-picker's `fixedWeeks` prop for 6-week grid**
 
 **Implementation**:
+
 ```typescript
 <DayPicker
   mode="single"
@@ -162,12 +174,14 @@ const eventsOnDay = getEventsForDay(today, events)
 ```
 
 **Advantages**:
+
 - Consistent 42 cells (6 rows × 7 columns) per FR-002
 - Simplified CSS (no variable heights)
 - Predictable layout for accessibility
 - Built into react-day-picker, no custom logic needed
 
 **CSS Grid Layout**:
+
 ```css
 .calendarGrid {
   display: grid;
@@ -181,9 +195,11 @@ const eventsOnDay = getEventsForDay(today, events)
 ## Task 4: Keyboard Navigation & Accessibility
 
 ### Decision
+
 **✅ react-day-picker provides native keyboard navigation**
 
 **Built-in Support**:
+
 - ⬅️ Arrow Left: Previous day
 - ➡️ Arrow Right: Next day
 - ⬆️ Arrow Up: Previous week
@@ -192,12 +208,14 @@ const eventsOnDay = getEventsForDay(today, events)
 - Enter/Space: Select date (future enhancement)
 
 **Additional Accessibility Requirements** (per FR-014/015/NFR-002):
+
 - Semantic HTML: `<table>` + `<th>` + `<td>` generated by react-day-picker
 - ARIA Labels: Automatic via library + custom `aria-label` on cells
 - Color Contrast: CSS variables ensure ≥4.5:1 (validated in tests)
 - Screen Reader Support: Tested with @axe-core/react + Playwright
 
 **Testing**:
+
 - Unit test: Verify keyboard focus management
 - Accessibility test: @axe-core/react validation
 - E2E test: Playwright keyboard navigation simulation
@@ -207,30 +225,34 @@ const eventsOnDay = getEventsForDay(today, events)
 ## Task 5: API-Ready Event Data Structure
 
 ### Decision
+
 **✅ Design CalendarEvent interface for RFC 5545 (iCalendar) compatibility**
 
 **Entity Definition**:
+
 ```typescript
 interface CalendarEvent {
-  id: string                    // Unique identifier
-  title: string                 // Event title (required)
-  date: Date                    // Event date (required)
-  startTime?: string            // ISO 8601 time (optional)
-  endTime?: string              // ISO 8601 time (optional)
-  description?: string          // Event description
-  location?: string             // Event location
-  attendees?: string[]          // Email list
-  color?: string                // Hex color for visual categorization
-  isAllDay?: boolean            // All-day event flag
-  recurrence?: RecurrenceRule   // Future: recurring events
+  id: string; // Unique identifier
+  title: string; // Event title (required)
+  date: Date; // Event date (required)
+  startTime?: string; // ISO 8601 time (optional)
+  endTime?: string; // ISO 8601 time (optional)
+  description?: string; // Event description
+  location?: string; // Event location
+  attendees?: string[]; // Email list
+  color?: string; // Hex color for visual categorization
+  isAllDay?: boolean; // All-day event flag
+  recurrence?: RecurrenceRule; // Future: recurring events
 }
 ```
 
 **API Migration Path**:
+
 - Phase 1-2: Mock data in `src/lib/data/mockData.ts`
 - Phase 4+: Replace with `async fetchEvents(month: Date)` (no component changes needed)
 
 **Example Mock Data**:
+
 ```typescript
 const mockEvents: CalendarEvent[] = [
   {
@@ -242,7 +264,7 @@ const mockEvents: CalendarEvent[] = [
     color: '#3B82F6',
   },
   // ... more events
-]
+];
 ```
 
 ---
@@ -250,9 +272,11 @@ const mockEvents: CalendarEvent[] = [
 ## Task 6: CSS Modules & Design Tokens Strategy
 
 ### Decision
+
 **✅ Centralized variables.css + per-component CSS Modules**
 
 **File Structure**:
+
 ```
 src/
 ├── styles/
@@ -266,22 +290,23 @@ src/
 ```
 
 **variables.css** (Design Tokens):
+
 ```css
 :root {
   /* Colors */
-  --color-primary: #3B82F6;
-  --color-today: #EF4444;
+  --color-primary: #3b82f6;
+  --color-today: #ef4444;
   --color-overflow-day: rgba(0, 0, 0, 0.3);
-  
+
   /* Spacing */
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
-  
+
   /* Typography */
   --font-base: 16px;
   --font-mobile: clamp(14px, 3vw, 16px);
-  
+
   /* Breakpoints */
   --breakpoint-tablet: 768px;
   --breakpoint-desktop: 1024px;
@@ -289,6 +314,7 @@ src/
 ```
 
 **Component Example** (CalendarGrid.module.css):
+
 ```css
 .grid {
   display: grid;
@@ -308,6 +334,7 @@ src/
 ## Task 7: Multi-Layer Testing Strategy
 
 ### Decision
+
 **✅ Jest + React Testing Library + @axe-core/react + Playwright**
 
 **Testing Layers**:
@@ -335,6 +362,7 @@ src/
    - Lighthouse scores >90
 
 **Example Test Case**:
+
 ```typescript
 describe('CalendarGrid', () => {
   it('should display 42 cells in fixed 6-week grid', () => {
@@ -356,17 +384,19 @@ describe('CalendarGrid', () => {
 ## Task 8: Responsive Design - Mobile-First Approach
 
 ### Decision
+
 **✅ Mobile-first CSS with 3 breakpoints (320px → 768px → 1024px)**
 
 **Breakpoint Strategy**:
 
-| Device | Width | Cell Height | Font | Touch Target |
-|--------|-------|-------------|------|--------------|
-| **Mobile** | 320-374px | 60px | 14px clamp | 44×44px min |
-| **Tablet** | 375-1023px | 80px | 16px clamp | 48×48px |
-| **Desktop** | 1024px+ | 100px | 18px fixed | 60×60px |
+| Device      | Width      | Cell Height | Font       | Touch Target |
+| ----------- | ---------- | ----------- | ---------- | ------------ |
+| **Mobile**  | 320-374px  | 60px        | 14px clamp | 44×44px min  |
+| **Tablet**  | 375-1023px | 80px        | 16px clamp | 48×48px      |
+| **Desktop** | 1024px+    | 100px       | 18px fixed | 60×60px      |
 
 **Mobile-First Code Example**:
+
 ```css
 /* Mobile first (320px) */
 .dayCell {
@@ -395,6 +425,7 @@ describe('CalendarGrid', () => {
 ```
 
 **Touch Target Validation**:
+
 - Minimum 44×44px per WCAG 2.1 AA (tested in Playwright)
 - Adequate spacing between interactive elements
 
@@ -403,6 +434,7 @@ describe('CalendarGrid', () => {
 ## Conclusion
 
 **All research tasks completed**:
+
 - ✅ Task 1: Library selected (react-day-picker v9)
 - ✅ Task 2: Date utilities chosen (date-fns)
 - ✅ Task 3: Fixed grid strategy defined (fixedWeeks prop)
