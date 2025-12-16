@@ -92,22 +92,23 @@ spike-copilot-next-calendar/
 │   │   ├── page.tsx                  # Calendar page (from T021)
 │   │   └── globals.css               # Global resets
 │   ├── components/
-│   │   ├── MonthlyCalendar/
-│   │   │   ├── MonthlyCalendar.tsx   # Main component (T016)
-│   │   │   ├── MonthlyCalendar.module.css
-│   │   │   └── MonthlyCalendar.test.tsx
-│   │   ├── CalendarGrid/
-│   │   │   ├── CalendarGrid.tsx      # react-day-picker wrapper (T017)
-│   │   │   ├── CalendarGrid.module.css
-│   │   │   └── CalendarGrid.test.tsx
-│   │   ├── DayCell/
-│   │   │   ├── DayCell.tsx           # Custom day cell (T027)
-│   │   │   ├── DayCell.module.css
-│   │   │   └── DayCell.test.tsx
-│   │   └── EventList/
-│   │       ├── EventList.tsx         # Event list in cells (T029)
-│   │       ├── EventList.module.css
-│   │       └── EventList.test.tsx
+│   │   └── calendar/                 # Calendar components (co-located: .tsx + .module.css + .test.tsx)
+│   │       ├── MonthlyCalendar/
+│   │       │   ├── MonthlyCalendar.tsx
+│   │       │   ├── MonthlyCalendar.module.css
+│   │       │   └── MonthlyCalendar.test.tsx
+│   │       ├── CalendarGrid/
+│   │       │   ├── CalendarGrid.tsx
+│   │       │   ├── CalendarGrid.module.css
+│   │       │   └── CalendarGrid.test.tsx
+│   │       ├── DayCell/
+│   │       │   ├── DayCell.tsx
+│   │       │   ├── DayCell.module.css
+│   │       │   └── DayCell.test.tsx
+│   │       └── EventList/
+│   │           ├── EventList.tsx
+│   │           ├── EventList.module.css
+│   │           └── EventList.test.tsx
 │   ├── lib/
 │   │   └── calendar/
 │   │       ├── dateUtils.ts          # Date helpers + getEventsForDay (T012)
