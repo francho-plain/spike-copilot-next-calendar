@@ -9,6 +9,13 @@
   --rdp-cell-size: 100% !important;
 }
 
+/* Hide default caption and navigation from react-day-picker */
+.rdpCalendar :global(.rdp-caption),
+.rdpCalendar :global(.rdp-nav),
+.rdpCalendar :global(.rdp-month_caption) {
+  display: none !important;
+}
+
 .rdpCalendar :global(table) {
   width: 100% !important;
   border-collapse: collapse;
