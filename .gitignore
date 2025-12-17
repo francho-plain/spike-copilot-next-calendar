@@ -20,3 +20,8 @@ coverage/
 .pnpm-debug.log
 pnpm-lock.yaml
 yarn-error.log
+
+# Playwright
+playwright-report/
+test-results/
+.playwright/
