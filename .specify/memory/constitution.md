@@ -1,4 +1,36 @@
-# Project Constitution v1.1.0
+<!--
+SYNC IMPACT REPORT
+==================
+Version Change: v1.1.0 → v1.2.0 (MINOR)
+Amendment Date: 2025-12-17
+
+Modified Principles:
+- Principle II: Test-Driven Completion
+  - Added: Page Object Model (POM) requirement for E2E tests
+  - Added: E2E Testing Pattern subsection with POM benefits and implementation guidance
+
+Rationale:
+- Page Object Model improves E2E test maintainability and reduces duplication
+- Encapsulates page interactions, making tests more readable and resilient to UI changes
+- Aligns with Playwright best practices for enterprise applications
+
+Templates Requiring Updates:
+- ✅ .specify/templates/tasks-template.md (Updated: Added E2E POM task examples and notes)
+- ⚠ tests/e2e/* (Existing E2E tests should be refactored to use POM pattern)
+
+Follow-up TODOs:
+- Create base Page Object classes in tests/e2e/pages/
+- Refactor existing calendar-display.spec.ts to use Page Objects
+- Document POM pattern in project README or testing guide
+
+Version Bump Reasoning:
+MINOR version bump justified because:
+- New testing pattern requirement added (material expansion of guidance)
+- Non-breaking change (existing tests continue to work)
+- Enhances testing quality without removing existing principles
+-->
+
+# Project Constitution v1.2.0
 
 ## Mission
 
@@ -24,8 +56,13 @@ Deliver a Next.js calendar application that is accessible (WCAG 2.1 AA), testabl
 - **Requirements**:
   - Unit tests: ≥80% code coverage per module
   - Accessibility tests: All WCAG 2.1 AA criteria verified via @axe-core/react
-  - E2E tests: Critical user journeys tested via Playwright
+  - E2E tests: Critical user journeys tested via Playwright using **Page Object Model (POM)** pattern
   - Performance tests: NFR compliance (render time, bundle size)
+- **E2E Testing Pattern**:
+  - Use Page Object Model to encapsulate page interactions
+  - Each page/component gets a Page Object class with methods for actions and queries
+  - Tests reference Page Objects, not raw selectors
+  - Benefits: Maintainable tests, reusable page logic, single source of truth for selectors
 - **Process**: Write test first (red), implement (green), refactor (clean)
 - **Validation**: CI/CD gates require all tests passing
 
@@ -137,5 +174,6 @@ Each phase must deliver:
 
 ## Version History
 
+- **v1.2.0** (2025-12-17): Added Page Object Model requirement for E2E tests in Principle II
 - **v1.1.0** (2025-12-16): Added Principle VIII - Component Structure Organization (each component: .tsx + .module.css + .test.tsx)
 - **v1.0.0** (2025-12-16): Initial constitution with 7 core principles ratified for monthly calendar feature
