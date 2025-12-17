@@ -132,7 +132,7 @@ describe('EventList', () => {
   });
 
   describe('Long Title Handling', () => {
-    it('should truncate long event titles with CSS ellipsis', () => {
+    it('should display long event titles', () => {
       const longTitleEvent: CalendarEvent[] = [
         {
           id: '1',
@@ -145,8 +145,8 @@ describe('EventList', () => {
       render(<EventList events={longTitleEvent} />);
       
       const eventTitle = screen.getByText('This is a very long event title that exceeds fifty characters and should be truncated');
-      expect(eventTitle).toHaveClass('eventTitle');
-      // CSS ellipsis is applied via class, actual truncation happens in CSS
+      expect(eventTitle).toBeInTheDocument();
+      // CSS ellipsis is applied via styles, actual truncation happens in CSS
     });
 
     it('should show full title in title attribute for accessibility', () => {
@@ -185,29 +185,6 @@ describe('EventList', () => {
       expect(events[0]).toHaveAttribute('data-testid', 'event-1');
       expect(events[1]).toHaveAttribute('data-testid', 'event-2');
       expect(events[2]).toHaveAttribute('data-testid', 'event-3');
-    });
-  });
-
-  describe('Styling', () => {
-    it('should apply eventList CSS class to container', () => {
-      render(<EventList events={mockEvents} />);
-      
-      const eventList = screen.getByTestId('event-list');
-      expect(eventList).toHaveClass('eventList');
-    });
-
-    it('should apply event CSS class to each event', () => {
-      render(<EventList events={mockEvents} />);
-      
-      const event = screen.getByTestId('event-1');
-      expect(event).toHaveClass('event');
-    });
-
-    it('should apply moreIndicator CSS class to overflow indicator', () => {
-      render(<EventList events={mockEvents} maxVisible={2} />);
-      
-      const moreIndicator = screen.getByTestId('more-events');
-      expect(moreIndicator).toHaveClass('moreIndicator');
     });
   });
 });

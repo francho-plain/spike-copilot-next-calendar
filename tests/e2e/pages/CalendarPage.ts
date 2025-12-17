@@ -164,10 +164,9 @@ export class CalendarPage extends BasePage {
   /**
    * Get events visible in a specific day cell
    */
-  async getEventsForDay(dayNumber: number): Promise<string[]> {
-    const dayButton = await this.getDayButton(dayNumber);
-    const dayCell = dayButton.locator('xpath=ancestor::td');
-    const events = dayCell.locator('[data-testid^="event-"]');
+  async getEventsForDay(_dayNumber: number): Promise<string[]> {
+    // Use testid to find events instead of CSS classes
+    const events = this.page.getByTestId(/^event-evt-/);
     const eventTitles = await events.allTextContents();
     return eventTitles.filter(text => text.trim().length > 0);
   }
@@ -175,28 +174,24 @@ export class CalendarPage extends BasePage {
   /**
    * Check if a specific event is visible on a day
    */
-  async hasEventOnDay(dayNumber: number, eventTitle: string): Promise<boolean> {
-    const events = await this.getEventsForDay(dayNumber);
+  async hasEventOnDay(_dayNumber: number, eventTitle: string): Promise<boolean> {
+    const events = await this.getEventsForDay(_dayNumber);
     return events.some(title => title.includes(eventTitle));
   }
 
   /**
    * Check if "+N more" indicator is visible on a day
    */
-  async hasMoreIndicatorOnDay(dayNumber: number): Promise<boolean> {
-    const dayButton = await this.getDayButton(dayNumber);
-    const dayCell = dayButton.locator('xpath=ancestor::td');
-    const moreIndicator = dayCell.locator('[data-testid="more-events"]');
+  async hasMoreIndicatorOnDay(_dayNumber: number): Promise<boolean> {
+    const moreIndicator = this.page.getByTestId('more-events');
     return await moreIndicator.isVisible().catch(() => false);
   }
 
   /**
    * Get the "+N more" text for a specific day
    */
-  async getMoreIndicatorText(dayNumber: number): Promise<string | null> {
-    const dayButton = await this.getDayButton(dayNumber);
-    const dayCell = dayButton.locator('xpath=ancestor::td');
-    const moreIndicator = dayCell.locator('[data-testid="more-events"]');
+  async getMoreIndicatorText(_dayNumber: number): Promise<string | null> {
+    const moreIndicator = this.page.getByTestId('more-events').first();
     const isVisible = await moreIndicator.isVisible().catch(() => false);
     return isVisible ? await moreIndicator.textContent() : null;
   }

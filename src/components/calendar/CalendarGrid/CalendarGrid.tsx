@@ -1,6 +1,6 @@
 'use client';
 
-import { DayPicker, DayProps } from 'react-day-picker';
+import { DayPicker, type DayButtonProps } from 'react-day-picker';
 import { CalendarEvent } from '@/lib/calendar/types';
 import { isCurrentMonth, getEventsForDay } from '@/lib/calendar/dateUtils';
 import EventList from '../EventList/EventList';
@@ -12,33 +12,34 @@ export interface CalendarGridProps {
   onDateSelect?: (date: Date) => void;
 }
 
+// Custom DayButton component that adds events below the button
+function CustomDayButton({ day, ...props }: DayButtonProps & { events?: CalendarEvent[] }) {
+  // Get events from props
+  const events = props.events || [];
+  const dayEvents = getEventsForDay(day.date, events);
+
+  return (
+    <>
+      {/* Render the default button behavior manually */}
+      <button {...props}>
+        {day.date.getDate()}
+      </button>
+      <div className={styles.dayEventsWrapper}>
+        {dayEvents.length > 0 ? (
+          <EventList events={dayEvents} maxVisible={3} />
+        ) : (
+          <span className={styles.emptyDay} aria-hidden="true" />
+        )}
+      </div>
+    </>
+  );
+}
+
 export default function CalendarGrid({ displayMonth, events = [], onDateSelect }: CalendarGridProps) {
   const today = new Date();
 
-  // Custom Day component that includes events
-  function CustomDay(props: DayProps) {
-    const date = props.day.date;
-    const dayEvents = getEventsForDay(date, events);
-    const dayNumber = date.getDate();
-    
-    return (
-      <div className={styles.customDayCell}>
-        <button
-          className={styles.dayButton}
-          onClick={() => onDateSelect?.(date)}
-          aria-label={`${date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`}
-          data-date={date.toISOString().split('T')[0]}
-        >
-          <span className={styles.dayNumber}>{dayNumber}</span>
-        </button>
-        {dayEvents.length > 0 && (
-          <div className={styles.eventsContainer}>
-            <EventList events={dayEvents} maxVisible={3} />
-          </div>
-        )}
-      </div>
-    );
-  }
+  // Create a wrapper to pass events to CustomDayButton
+  const DayButtonWithEvents = (props: DayButtonProps) => <CustomDayButton {...props} events={events} />;
 
   return (
     <div className={styles.gridContainer}>
@@ -47,6 +48,9 @@ export default function CalendarGrid({ displayMonth, events = [], onDateSelect }
         month={displayMonth}
         fixedWeeks
         weekStartsOn={1}
+        components={{
+          DayButton: DayButtonWithEvents,
+        }}
         modifiers={{
           today: today,
           currentMonth: (day) => isCurrentMonth(day, displayMonth),
@@ -56,9 +60,7 @@ export default function CalendarGrid({ displayMonth, events = [], onDateSelect }
           today: 'today',
           overflow: 'overflow',
         }}
-        components={{
-          Day: CustomDay,
-        }}
+        onDayClick={onDateSelect}
         showOutsideDays
         className={styles.rdpCalendar}
       />

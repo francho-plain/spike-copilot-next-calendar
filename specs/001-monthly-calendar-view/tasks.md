@@ -70,33 +70,34 @@
 
 ---
 
-## Phase 4: User Story 2 - Display Events (16 tasks)
+## Phase 4: User Story 2 - Display Events (16 tasks) ✅ COMPLETE
 
 **Goal**: Show event data within each day cell of the calendar with event titles visible, handle multiple events  
 **Duration**: ~10 hours  
 **Blockers**: Requires Phase 3  
-**Parallelizable**: 8 tasks
+**Parallelizable**: 8 tasks  
+**Status**: ✅ All tasks completed
 
 ### Implementation for User Story 2
 
-- [ ] T027 [P] [US2] Create DayCell component extending react-day-picker Day component in src/components/DayCell/DayCell.tsx
-- [ ] T028 [P] [US2] Create CSS Module for DayCell with event display styles in src/components/DayCell/DayCell.module.css
-- [ ] T029 [P] [US2] Create EventList component to render multiple events in src/components/EventList/EventList.tsx
-- [ ] T030 [P] [US2] Create CSS Module for EventList in src/components/EventList/EventList.module.css
-- [ ] T031 [US2] Integrate DayCell with CalendarGrid using react-day-picker components prop in src/components/CalendarGrid/CalendarGrid.tsx
-- [ ] T032 [US2] Implement event filtering by date in DayCell using getEventsForDay utility
-- [ ] T033 [US2] Implement EventList rendering with event titles (or "(No title)" fallback) in src/components/EventList/EventList.tsx
-- [ ] T034 [US2] Add "+N more" text indicator for days with >3 events in src/components/EventList/EventList.tsx
-- [ ] T035 [US2] Handle empty day state (no events) in src/components/DayCell/DayCell.tsx
-- [ ] T036 [US2] Style event display with optional event colors in src/components/EventList/EventList.module.css
-- [ ] T037 [US2] Add edge case handling for long event titles (>50 chars, truncate with ellipsis) in src/components/EventList/EventList.module.css
-- [ ] T038 [P] [US2] Create unit test for DayCell component in src/components/DayCell/DayCell.test.tsx
-- [ ] T039 [P] [US2] Create unit test for EventList with multiple events in src/components/EventList/EventList.test.tsx
-- [ ] T040 [P] [US2] Create unit test for getEventsForDay utility in tests/unit/lib/dateUtils.test.ts
-- [ ] T041 [US2] Create accessibility test for event display in tests/accessibility/event-display.a11y.test.tsx
-- [ ] T042 [US2] Create E2E test for event visibility in tests/e2e/event-display.spec.ts
+- [X] T027 [P] [US2] Create DayCell component extending react-day-picker Day component in src/components/DayCell/DayCell.tsx
+- [X] T028 [P] [US2] Create CSS Module for DayCell with event display styles in src/components/DayCell/DayCell.module.css
+- [X] T029 [P] [US2] Create EventList component to render multiple events in src/components/EventList/EventList.tsx
+- [X] T030 [P] [US2] Create CSS Module for EventList in src/components/EventList/EventList.module.css
+- [X] T031 [US2] Integrate DayCell with CalendarGrid using react-day-picker components prop in src/components/CalendarGrid/CalendarGrid.tsx
+- [X] T032 [US2] Implement event filtering by date in DayCell using getEventsForDay utility
+- [X] T033 [US2] Implement EventList rendering with event titles (or "(No title)" fallback) in src/components/EventList/EventList.tsx
+- [X] T034 [US2] Add "+N more" text indicator for days with >3 events in src/components/EventList/EventList.tsx
+- [X] T035 [US2] Handle empty day state (no events) in src/components/DayCell/DayCell.tsx
+- [X] T036 [US2] Style event display with optional event colors in src/components/EventList/EventList.module.css
+- [X] T037 [US2] Add edge case handling for long event titles (>50 chars, truncate with ellipsis) in src/components/EventList/EventList.module.css
+- [X] T038 [P] [US2] Create unit test for DayCell component in src/components/DayCell/DayCell.test.tsx
+- [X] T039 [P] [US2] Create unit test for EventList with multiple events in src/components/EventList/EventList.test.tsx
+- [X] T040 [P] [US2] Create unit test for getEventsForDay utility in tests/unit/lib/dateUtils.test.ts
+- [X] T041 [US2] Create accessibility test for event display in tests/accessibility/event-display.a11y.test.tsx
+- [X] T042 [US2] Create E2E test for event visibility in tests/e2e/event-display.spec.ts
 
-**Checkpoint**: At this point, User Stories 1 AND 2 should both work - calendar displays with events
+**Checkpoint**: ✅ User Stories 1 AND 2 complete - calendar displays with events
 
 ---
 

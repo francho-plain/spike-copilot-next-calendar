@@ -25,7 +25,7 @@ export default function DayCell({ date, events }: DayCellProps) {
       {dayEvents.length > 0 ? (
         <EventList events={dayEvents} maxVisible={3} />
       ) : (
-        <div className={styles.emptyDay} aria-label="No events for this day" />
+        <span className={styles.emptyDay} aria-hidden="true" />
       )}
     </div>
   );
