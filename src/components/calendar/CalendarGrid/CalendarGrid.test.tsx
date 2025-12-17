@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import CalendarGrid from './CalendarGrid';
@@ -102,14 +103,16 @@ describe('CalendarGrid', () => {
   });
 
   describe('Interactions', () => {
-    it('calls onDateSelect when a day is clicked', () => {
+    it('calls onDateSelect when a day is clicked', async () => {
       const onDateSelect = jest.fn();
       const { container } = render(
         <CalendarGrid displayMonth={displayMonth} events={events} onDateSelect={onDateSelect} />,
       );
 
-      const firstDayButton = container.querySelector('tbody button');
-      firstDayButton?.click();
+      const firstDayButton = container.querySelector('tbody button') as HTMLButtonElement | null;
+      if (firstDayButton) {
+        await userEvent.click(firstDayButton);
+      }
 
       expect(onDateSelect).toHaveBeenCalledTimes(1);
       expect(onDateSelect.mock.calls[0][0]).toBeInstanceOf(Date);

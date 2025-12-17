@@ -9,6 +9,7 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import MonthlyCalendar from '@/components/calendar/MonthlyCalendar/MonthlyCalendar';
 import { CalendarEvent } from '@/lib/calendar/types';
+import { act } from 'react';
 
 describe('Calendar Performance - Render Time', () => {
   const generateMockEvents = (count: number): CalendarEvent[] => {
@@ -20,11 +21,13 @@ describe('Calendar Performance - Render Time', () => {
       const eventDate = new Date(baseDate);
       eventDate.setDate(baseDate.getDate() + dayOffset);
 
+      const hour = 9 + (i % 8);
       events.push({
         id: `event-${i}`,
         title: `Event ${i + 1}`,
-        start: new Date(eventDate.setHours(9 + (i % 8))),
-        end: new Date(eventDate.setHours(10 + (i % 8))),
+        date: new Date(eventDate),
+        startTime: `${hour.toString().padStart(2, '0')}:00`,
+        endTime: `${(hour + 1).toString().padStart(2, '0')}:00`,
         location: i % 2 === 0 ? 'Conference Room' : undefined,
       });
     }
@@ -45,8 +48,12 @@ describe('Calendar Performance - Render Time', () => {
     it('renders calendar with 0 events in <1 second', () => {
       const startTime = performance.now();
 
-      render(<MonthlyCalendar events={[]} />);
-      jest.advanceTimersByTime(150);
+      act(() => {
+        render(<MonthlyCalendar events={[]} />);
+      });
+      act(() => {
+        jest.advanceTimersByTime(150);
+      });
 
       const endTime = performance.now();
       const renderTime = endTime - startTime;
@@ -59,8 +66,12 @@ describe('Calendar Performance - Render Time', () => {
       const events = generateMockEvents(10);
       const startTime = performance.now();
 
-      render(<MonthlyCalendar events={events} />);
-      jest.advanceTimersByTime(150);
+      act(() => {
+        render(<MonthlyCalendar events={events} />);
+      });
+      act(() => {
+        jest.advanceTimersByTime(150);
+      });
 
       const endTime = performance.now();
       const renderTime = endTime - startTime;
@@ -73,8 +84,12 @@ describe('Calendar Performance - Render Time', () => {
       const events = generateMockEvents(50);
       const startTime = performance.now();
 
-      render(<MonthlyCalendar events={events} />);
-      jest.advanceTimersByTime(150);
+      act(() => {
+        render(<MonthlyCalendar events={events} />);
+      });
+      act(() => {
+        jest.advanceTimersByTime(150);
+      });
 
       const endTime = performance.now();
       const renderTime = endTime - startTime;
@@ -87,8 +102,12 @@ describe('Calendar Performance - Render Time', () => {
       const events = generateMockEvents(100);
       const startTime = performance.now();
 
-      render(<MonthlyCalendar events={events} />);
-      jest.advanceTimersByTime(150);
+      act(() => {
+        render(<MonthlyCalendar events={events} />);
+      });
+      act(() => {
+        jest.advanceTimersByTime(150);
+      });
 
       const endTime = performance.now();
       const renderTime = endTime - startTime;
@@ -101,8 +120,12 @@ describe('Calendar Performance - Render Time', () => {
       const events = generateMockEvents(200);
       const startTime = performance.now();
 
-      render(<MonthlyCalendar events={events} />);
-      jest.advanceTimersByTime(150);
+      act(() => {
+        render(<MonthlyCalendar events={events} />);
+      });
+      act(() => {
+        jest.advanceTimersByTime(150);
+      });
 
       const endTime = performance.now();
       const renderTime = endTime - startTime;
@@ -115,15 +138,25 @@ describe('Calendar Performance - Render Time', () => {
   describe('Re-render Performance', () => {
     it('updates calendar when month changes in <500ms', () => {
       const events = generateMockEvents(50);
-      const { rerender } = render(<MonthlyCalendar events={events} />);
+      let rerender: any;
+      act(() => {
+        const result = render(<MonthlyCalendar events={events} />);
+        rerender = result.rerender;
+      });
 
-      jest.advanceTimersByTime(150);
+      act(() => {
+        jest.advanceTimersByTime(150);
+      });
 
       const startTime = performance.now();
 
       // Trigger re-render with new props (simulating month change)
-      rerender(<MonthlyCalendar events={events} />);
-      jest.advanceTimersByTime(150);
+      act(() => {
+        rerender(<MonthlyCalendar events={events} />);
+      });
+      act(() => {
+        jest.advanceTimersByTime(150);
+      });
 
       const endTime = performance.now();
       const rerenderTime = endTime - startTime;
@@ -134,15 +167,25 @@ describe('Calendar Performance - Render Time', () => {
 
     it('updates when event list changes in <500ms', () => {
       const initialEvents = generateMockEvents(20);
-      const { rerender } = render(<MonthlyCalendar events={initialEvents} />);
+      let rerender: any;
+      act(() => {
+        const result = render(<MonthlyCalendar events={initialEvents} />);
+        rerender = result.rerender;
+      });
 
-      jest.advanceTimersByTime(150);
+      act(() => {
+        jest.advanceTimersByTime(150);
+      });
 
       const startTime = performance.now();
 
       const updatedEvents = generateMockEvents(30);
-      rerender(<MonthlyCalendar events={updatedEvents} />);
-      jest.advanceTimersByTime(150);
+      act(() => {
+        rerender(<MonthlyCalendar events={updatedEvents} />);
+      });
+      act(() => {
+        jest.advanceTimersByTime(150);
+      });
 
       const endTime = performance.now();
       const updateTime = endTime - startTime;
@@ -161,9 +204,17 @@ describe('Calendar Performance - Render Time', () => {
 
       // Render and unmount multiple times
       for (let i = 0; i < 10; i++) {
-        const { unmount } = render(<MonthlyCalendar events={events} />);
-        jest.advanceTimersByTime(150);
-        unmount();
+        let unmount: any;
+        act(() => {
+          const result = render(<MonthlyCalendar events={events} />);
+          unmount = result.unmount;
+        });
+        act(() => {
+          jest.advanceTimersByTime(150);
+        });
+        act(() => {
+          unmount();
+        });
       }
 
       const finalMemory = (performance as any).memory?.usedJSHeapSize || 0;
@@ -182,9 +233,13 @@ describe('Calendar Performance - Render Time', () => {
   describe('Responsive Resize Performance', () => {
     it('handles viewport resize without significant performance degradation', () => {
       const events = generateMockEvents(50);
-      render(<MonthlyCalendar events={events} />);
+      act(() => {
+        render(<MonthlyCalendar events={events} />);
+      });
 
-      jest.advanceTimersByTime(150);
+      act(() => {
+        jest.advanceTimersByTime(150);
+      });
 
       const startTime = performance.now();
 
@@ -216,8 +271,12 @@ describe('Calendar Performance - Render Time', () => {
         const events = generateMockEvents(eventCount);
         const startTime = performance.now();
 
-        render(<MonthlyCalendar events={events} />);
-        jest.advanceTimersByTime(150);
+        act(() => {
+          render(<MonthlyCalendar events={events} />);
+        });
+        act(() => {
+          jest.advanceTimersByTime(150);
+        });
 
         const endTime = performance.now();
         const renderTime = endTime - startTime;

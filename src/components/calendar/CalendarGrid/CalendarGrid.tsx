@@ -14,11 +14,11 @@ export interface CalendarGridProps {
 }
 
 // Custom DayButton component that adds events below the button
-function CustomDayButton({ day, ...props }: DayButtonProps & { events?: CalendarEvent[]; isToday?: boolean }) {
+function CustomDayButton({ day, events: propEvents, isToday: propIsToday, ...props }: DayButtonProps & { events?: CalendarEvent[]; isToday?: boolean }) {
   // Get events from props
-  const events = props.events || [];
+  const events = propEvents || [];
   const dayEvents = getEventsForDay(day.date, events);
-  const isToday = props.isToday || false;
+  const isToday = propIsToday || false;
 
   return (
     <>
