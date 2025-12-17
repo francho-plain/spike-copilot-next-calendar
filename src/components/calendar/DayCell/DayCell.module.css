@@ -1,0 +1,46 @@
+.dayCell {
+  width: 100%;
+  height: 100%;
+  padding: var(--spacing-xs);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  background-color: var(--color-surface);
+  overflow: hidden;
+}
+
+.dayNumber {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  text-align: right;
+  line-height: 1.2;
+}
+
+.emptyDay {
+  flex: 1;
+  min-height: 20px;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 768px) {
+  .dayCell {
+    padding: 2px;
+    gap: 2px;
+  }
+
+  .dayNumber {
+    font-size: var(--font-size-xs);
+  }
+}
+
+@media (max-width: 480px) {
+  .dayCell {
+    padding: 1px;
+    gap: 1px;
+  }
+
+  .dayNumber {
+    font-size: 10px;
+  }
+}

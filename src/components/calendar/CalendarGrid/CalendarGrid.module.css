@@ -64,8 +64,52 @@
   padding: 0;
   border: none !important;
   margin: 0;
+  overflow: hidden;
 }
 
+/* Custom day cell structure */
+.customDayCell {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-surface);
+  overflow: hidden;
+}
+
+.dayButton {
+  width: 100%;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  text-align: right;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color var(--transition-base);
+  flex-shrink: 0;
+}
+
+.dayButton:hover {
+  background-color: var(--color-surface-hover);
+}
+
+.dayButton:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+}
+
+.dayNumber {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.eventsContainer {
+  flex: 1;
+  padding: 0 var(--spacing-xs) var(--spacing-xs);
+  overflow: hidden;
+}
+
+/* Legacy button styles for react-day-picker default rendering */
 .rdpCalendar :global(button) {
   width: 100%;
   height: 100%;

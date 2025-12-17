@@ -161,6 +161,46 @@ export class CalendarPage extends BasePage {
     return await this.dayButtons.count();
   }
 
+  /**
+   * Get events visible in a specific day cell
+   */
+  async getEventsForDay(dayNumber: number): Promise<string[]> {
+    const dayButton = await this.getDayButton(dayNumber);
+    const dayCell = dayButton.locator('xpath=ancestor::td');
+    const events = dayCell.locator('[data-testid^="event-"]');
+    const eventTitles = await events.allTextContents();
+    return eventTitles.filter(text => text.trim().length > 0);
+  }
+
+  /**
+   * Check if a specific event is visible on a day
+   */
+  async hasEventOnDay(dayNumber: number, eventTitle: string): Promise<boolean> {
+    const events = await this.getEventsForDay(dayNumber);
+    return events.some(title => title.includes(eventTitle));
+  }
+
+  /**
+   * Check if "+N more" indicator is visible on a day
+   */
+  async hasMoreIndicatorOnDay(dayNumber: number): Promise<boolean> {
+    const dayButton = await this.getDayButton(dayNumber);
+    const dayCell = dayButton.locator('xpath=ancestor::td');
+    const moreIndicator = dayCell.locator('[data-testid="more-events"]');
+    return await moreIndicator.isVisible().catch(() => false);
+  }
+
+  /**
+   * Get the "+N more" text for a specific day
+   */
+  async getMoreIndicatorText(dayNumber: number): Promise<string | null> {
+    const dayButton = await this.getDayButton(dayNumber);
+    const dayCell = dayButton.locator('xpath=ancestor::td');
+    const moreIndicator = dayCell.locator('[data-testid="more-events"]');
+    const isVisible = await moreIndicator.isVisible().catch(() => false);
+    return isVisible ? await moreIndicator.textContent() : null;
+  }
+
   // ===== Viewport Methods =====
 
   async setMobileViewport() {

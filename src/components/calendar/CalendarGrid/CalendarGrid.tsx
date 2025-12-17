@@ -1,8 +1,9 @@
 'use client';
 
-import { DayPicker } from 'react-day-picker';
+import { DayPicker, DayProps } from 'react-day-picker';
 import { CalendarEvent } from '@/lib/calendar/types';
-import { isCurrentMonth } from '@/lib/calendar/dateUtils';
+import { isCurrentMonth, getEventsForDay } from '@/lib/calendar/dateUtils';
+import EventList from '../EventList/EventList';
 import styles from './CalendarGrid.module.css';
 
 export interface CalendarGridProps {
@@ -11,8 +12,33 @@ export interface CalendarGridProps {
   onDateSelect?: (date: Date) => void;
 }
 
-export default function CalendarGrid({ displayMonth, onDateSelect }: CalendarGridProps) {
+export default function CalendarGrid({ displayMonth, events = [], onDateSelect }: CalendarGridProps) {
   const today = new Date();
+
+  // Custom Day component that includes events
+  function CustomDay(props: DayProps) {
+    const date = props.day.date;
+    const dayEvents = getEventsForDay(date, events);
+    const dayNumber = date.getDate();
+    
+    return (
+      <div className={styles.customDayCell}>
+        <button
+          className={styles.dayButton}
+          onClick={() => onDateSelect?.(date)}
+          aria-label={`${date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`}
+          data-date={date.toISOString().split('T')[0]}
+        >
+          <span className={styles.dayNumber}>{dayNumber}</span>
+        </button>
+        {dayEvents.length > 0 && (
+          <div className={styles.eventsContainer}>
+            <EventList events={dayEvents} maxVisible={3} />
+          </div>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div className={styles.gridContainer}>
@@ -30,7 +56,9 @@ export default function CalendarGrid({ displayMonth, onDateSelect }: CalendarGri
           today: 'today',
           overflow: 'overflow',
         }}
-        onDayClick={onDateSelect}
+        components={{
+          Day: CustomDay,
+        }}
         showOutsideDays
         className={styles.rdpCalendar}
       />
