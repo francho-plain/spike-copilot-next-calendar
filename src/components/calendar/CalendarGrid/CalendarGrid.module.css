@@ -121,29 +121,63 @@
   overflow: hidden;
 }
 
-@media (max-width: 768px) {
+/* Tablet breakpoint (768px) */
+@media (min-width: 768px) {
   .gridContainer {
-    padding: var(--spacing-sm);
+    padding: var(--spacing-lg);
+    max-width: 768px;
   }
 
   .rdpCalendar :global(tbody) {
-    grid-auto-rows: minmax(80px, auto);
+    grid-auto-rows: minmax(90px, auto);
   }
 
   .rdpCalendar :global(button) {
-    font-size: var(--font-size-sm);
-    padding: var(--spacing-xs);
+    font-size: var(--font-size-base);
+    padding: var(--spacing-sm);
   }
 
   .rdpCalendar :global(thead th) {
-    padding: var(--spacing-sm) 0;
-    font-size: 11px;
+    padding: var(--spacing-md) 0;
+    font-size: var(--font-size-sm);
+  }
+
+  .dayEventsWrapper {
+    padding: 0 var(--spacing-sm) var(--spacing-sm);
   }
 }
 
-@media (max-width: 480px) {
+/* Desktop breakpoint (1024px) */
+@media (min-width: 1024px) {
   .gridContainer {
-    padding: var(--spacing-xs);
+    max-width: 900px;
+    padding: var(--spacing-xl);
+  }
+
+  .rdpCalendar :global(tbody) {
+    grid-auto-rows: minmax(100px, auto);
+  }
+
+  .rdpCalendar :global(button) {
+    font-size: var(--font-size-base);
+    padding: var(--spacing-md);
+    min-height: 44px;
+  }
+
+  .rdpCalendar :global(thead th) {
+    padding: var(--spacing-lg) 0;
+    font-size: var(--font-size-base);
+  }
+
+  .dayEventsWrapper {
+    padding: 0 var(--spacing-md) var(--spacing-md);
+  }
+}
+
+/* Mobile-first base styles remain as default */
+@media (max-width: 767px) {
+  .gridContainer {
+    padding: var(--spacing-sm);
   }
 
   .rdpCalendar :global(tbody) {
@@ -151,16 +185,17 @@
   }
 
   .rdpCalendar :global(button) {
-    font-size: var(--font-size-xs);
-    padding: 2px;
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-xs);
+    min-height: 44px; /* Touch-friendly tap target */
   }
 
   .rdpCalendar :global(thead th) {
-    padding: var(--spacing-xs) 0;
-    font-size: 9px;
+    padding: var(--spacing-sm) 0;
+    font-size: var(--font-size-xs);
   }
 
   .dayEventsWrapper {
-    padding: 0 2px 2px;
+    padding: 0 var(--spacing-xs) var(--spacing-xs);
   }
 }

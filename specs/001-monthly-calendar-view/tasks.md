@@ -110,16 +110,16 @@
 
 ### Implementation for User Story 3
 
-- [ ] T043 [P] [US3] Add tablet breakpoint (768px) styles to src/components/CalendarGrid/CalendarGrid.module.css
-- [ ] T044 [P] [US3] Add desktop breakpoint (1024px) styles to src/components/CalendarGrid/CalendarGrid.module.css
-- [ ] T045 [P] [US3] Implement mobile-specific event truncation in src/components/EventList/EventList.module.css
-- [ ] T046 [P] [US3] Add responsive font sizing using CSS clamp in src/styles/variables.css
-- [ ] T047 [US3] Adjust DayCell height across breakpoints (60px mobile, 80px tablet, 100px desktop) in src/components/DayCell/DayCell.module.css
-- [ ] T048 [US3] Implement touch-friendly tap targets (min 44x44px) for mobile in src/components/DayCell/DayCell.module.css
-- [ ] T049 [US3] Add responsive padding and spacing across all components
-- [ ] T050 [P] [US3] Create E2E test for mobile viewport (375px) in tests/e2e/responsive-mobile.spec.ts
-- [ ] T051 [P] [US3] Create E2E test for tablet viewport (768px) in tests/e2e/responsive-tablet.spec.ts
-- [ ] T052 [P] [US3] Create E2E test for desktop viewport (1920px) in tests/e2e/responsive-desktop.spec.ts
+- [X] T043 [P] [US3] Add tablet breakpoint (768px) styles to src/components/CalendarGrid/CalendarGrid.module.css
+- [X] T044 [P] [US3] Add desktop breakpoint (1024px) styles to src/components/CalendarGrid/CalendarGrid.module.css
+- [X] T045 [P] [US3] Implement mobile-specific event truncation in src/components/EventList/EventList.module.css
+- [X] T046 [P] [US3] Add responsive font sizing using CSS clamp in src/styles/variables.css
+- [X] T047 [US3] Adjust DayCell height across breakpoints (60px mobile, 80px tablet, 100px desktop) in src/components/DayCell/DayCell.module.css
+- [X] T048 [US3] Implement touch-friendly tap targets (min 44x44px) for mobile in src/components/DayCell/DayCell.module.css
+- [X] T049 [US3] Add responsive padding and spacing across all components
+- [X] T050 [P] [US3] Create E2E test for mobile viewport (375px) in tests/e2e/responsive-mobile.spec.ts
+- [X] T051 [P] [US3] Create E2E test for tablet viewport (768px) in tests/e2e/responsive-tablet.spec.ts
+- [X] T052 [P] [US3] Create E2E test for desktop viewport (1920px) in tests/e2e/responsive-desktop.spec.ts
 
 **Checkpoint**: All user stories should now be independently functional across all screen sizes
 

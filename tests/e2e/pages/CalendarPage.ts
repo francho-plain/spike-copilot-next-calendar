@@ -162,6 +162,14 @@ export class CalendarPage extends BasePage {
   }
 
   /**
+   * Get all day cells (td elements) in the calendar
+   */
+  async getAllDayCells(): Promise<Locator[]> {
+    const cells = this.page.locator('tbody td');
+    return await cells.all();
+  }
+
+  /**
    * Get events visible in a specific day cell
    */
   async getEventsForDay(_dayNumber: number): Promise<string[]> {

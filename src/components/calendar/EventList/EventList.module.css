@@ -39,13 +39,8 @@
   max-width: 100%;
 }
 
-/* Truncate long titles (>50 chars handled by CSS ellipsis) */
-.eventTitle {
-  max-width: 100%;
-}
-
 .moreIndicator {
-  font-size: 10px;
+  font-size: var(--font-size-xs);
   color: var(--color-text-secondary);
   padding: 2px 4px;
   text-align: center;
@@ -53,28 +48,59 @@
   font-style: italic;
 }
 
-/* Mobile-specific truncation */
-@media (max-width: 768px) {
+/* Mobile-first: aggressive truncation for small screens */
+@media (max-width: 767px) {
   .event {
     font-size: 10px;
-    padding: 1px 2px;
+    padding: 1px 3px;
     border-left-width: 2px;
+    max-width: 100%;
+  }
+
+  .eventTitle {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .moreIndicator {
     font-size: 9px;
     padding: 1px 2px;
+  }
+
+  .eventList {
+    gap: 1px;
   }
 }
 
-@media (max-width: 480px) {
+/* Tablet: more space for event titles */
+@media (min-width: 768px) {
   .event {
-    font-size: 9px;
-    padding: 1px;
+    font-size: var(--font-size-xs);
+    padding: 2px 4px;
   }
 
   .moreIndicator {
-    font-size: 8px;
-    padding: 1px;
+    font-size: var(--font-size-xs);
+  }
+
+  .eventList {
+    gap: 2px;
+  }
+}
+
+/* Desktop: comfortable reading */
+@media (min-width: 1024px) {
+  .event {
+    font-size: var(--font-size-sm);
+    padding: 3px 6px;
+  }
+
+  .moreIndicator {
+    font-size: var(--font-size-sm);
+  }
+
+  .eventList {
+    gap: 3px;
   }
 }
