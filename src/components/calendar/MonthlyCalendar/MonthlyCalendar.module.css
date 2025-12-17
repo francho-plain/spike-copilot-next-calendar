@@ -1,0 +1,131 @@
+.monthlyCalendar {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.calendarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.calendarHeader h2 {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text);
+  flex: 1;
+  text-align: center;
+}
+
+.calendarHeader button {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  transition:
+    background-color var(--transition-base),
+    transform var(--transition-fast);
+}
+
+.calendarHeader button:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+}
+
+.calendarHeader button:active {
+  transform: translateY(0);
+}
+
+.calendarHeader button:focus {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  .calendarHeader {
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    flex-wrap: wrap;
+  }
+
+  .calendarHeader h2 {
+    width: 100%;
+    font-size: var(--font-size-md);
+  }
+
+  .calendarHeader button {
+    flex: 1;
+    min-width: 60px;
+    padding: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* Loading skeleton styles */
+.loadingSkeleton {
+  padding: var(--spacing-md);
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.skeletonHeader {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
+}
+
+.skeletonDay {
+  text-align: center;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  padding: var(--spacing-sm);
+}
+
+.skeletonGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--spacing-xs);
+}
+
+.skeletonCell {
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(90deg, var(--color-surface) 25%, var(--color-border) 50%, var(--color-surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--border-radius-sm);
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .loadingSkeleton {
+    padding: var(--spacing-sm);
+  }
+
+  .skeletonDay {
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-xs);
+  }
+}

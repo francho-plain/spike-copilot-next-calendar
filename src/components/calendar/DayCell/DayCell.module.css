@@ -1,0 +1,54 @@
+.dayCell {
+  width: 100%;
+  min-height: 60px; /* Mobile: minimum height */
+  padding: var(--spacing-xs);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  background-color: var(--color-surface);
+  overflow: hidden;
+}
+
+.dayNumber {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  text-align: right;
+  line-height: 1.2;
+  min-height: 44px; /* Touch-friendly tap target */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.emptyDay {
+  flex: 1;
+  min-height: 20px;
+}
+
+/* Tablet breakpoint (768px) */
+@media (min-width: 768px) {
+  .dayCell {
+    min-height: 80px;
+    padding: var(--spacing-sm);
+    gap: var(--spacing-sm);
+  }
+
+  .dayNumber {
+    font-size: var(--font-size-base);
+    min-height: auto;
+  }
+}
+
+/* Desktop breakpoint (1024px) */
+@media (min-width: 1024px) {
+  .dayCell {
+    min-height: 100px;
+    padding: var(--spacing-md);
+    gap: var(--spacing-md);
+  }
+
+  .dayNumber {
+    font-size: var(--font-size-lg);
+  }
+}
