@@ -22,10 +22,13 @@
   --color-overflow-day: rgba(0, 0, 0, 0.3);
   --color-background: #ffffff;
   --color-surface: #f9fafb;
+  --color-surface-hover: #f3f4f6;
   --color-border: #e5e7eb;
   --color-text: #111827;
   --color-text-secondary: #6b7280;
   --color-text-tertiary: #9ca3af;
+  --color-text-muted: #9ca3af;
+  --color-focus: #3b82f6;
 
   /* ========== SPACING ========== */
 
@@ -72,10 +75,10 @@
 
   /* ========== BORDER RADIUS ========== */
 
-  --radius-sm: 0.25rem; /* 4px */
-  --radius-md: 0.5rem; /* 8px */
-  --radius-lg: 1rem; /* 16px */
-  --radius-full: 9999px;
+  --border-radius-sm: 0.25rem; /* 4px */
+  --border-radius-md: 0.5rem; /* 8px */
+  --border-radius-lg: 1rem; /* 16px */
+  --border-radius-full: 9999px;
 
   /* ========== TRANSITIONS ========== */
 

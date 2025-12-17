@@ -72,3 +72,60 @@
     font-size: var(--font-size-sm);
   }
 }
+
+/* Loading skeleton styles */
+.loadingSkeleton {
+  padding: var(--spacing-md);
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.skeletonHeader {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
+}
+
+.skeletonDay {
+  text-align: center;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  padding: var(--spacing-sm);
+}
+
+.skeletonGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--spacing-xs);
+}
+
+.skeletonCell {
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(90deg, var(--color-surface) 25%, var(--color-border) 50%, var(--color-surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--border-radius-sm);
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .loadingSkeleton {
+    padding: var(--spacing-sm);
+  }
+
+  .skeletonDay {
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-xs);
+  }
+}

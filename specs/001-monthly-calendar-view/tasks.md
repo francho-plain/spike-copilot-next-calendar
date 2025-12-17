@@ -131,17 +131,17 @@
 **Duration**: ~8 hours  
 **Parallelizable**: 7 tasks
 
-- [ ] T053 [P] Add ARIA labels for month navigation (future enhancement) to src/components/CalendarGrid/CalendarGrid.tsx
-- [ ] T054 [P] Implement keyboard navigation (Arrow keys: day nav, Tab: event nav, Enter/Space: select) per WCAG 2.1 AA in src/components/CalendarGrid/CalendarGrid.tsx
-- [ ] T055 [P] Add loading states for calendar rendering in src/components/MonthlyCalendar/MonthlyCalendar.tsx
-- [ ] T056 [P] Optimize CSS variable usage across all components
-- [ ] T057 [P] Create integration test for all user stories combined in tests/unit/integration/calendar-full.test.tsx
-- [ ] T058 [P] Create performance test verifying calendar renders <1s (NFR-001) in tests/performance/render-time.test.ts
+- [X] T053 [P] Add ARIA labels for month navigation (future enhancement) to src/components/CalendarGrid/CalendarGrid.tsx
+- [X] T054 [P] Implement keyboard navigation (Arrow keys: day nav, Tab: event nav, Enter/Space: select) per WCAG 2.1 AA in src/components/CalendarGrid/CalendarGrid.tsx
+- [X] T055 [P] Add loading states for calendar rendering in src/components/MonthlyCalendar/MonthlyCalendar.tsx
+- [X] T056 [P] Optimize CSS variable usage across all components
+- [X] T057 [P] Create integration test for all user stories combined in tests/unit/integration/calendar-full.test.tsx
+- [X] T058 [P] Create performance test verifying calendar renders <1s (NFR-001) in tests/performance/render-time.test.tsx
 - [ ] T059 Run Lighthouse accessibility audit and achieve >90 score
-- [ ] T060 [P] Add JSDoc comments to all utility functions in src/lib/
+- [X] T060 [P] Add JSDoc comments to all utility functions in src/lib/
 - [ ] T061 Validate all Conventional Commit messages follow specification
 - [ ] T062 Run complete test suite (unit + accessibility + E2E + performance) and ensure 100% pass
-- [ ] T063 Create README with setup and development instructions
+- [X] T063 Create README with setup and development instructions
 
 ---
 

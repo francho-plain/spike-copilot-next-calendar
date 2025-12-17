@@ -1,7 +1,17 @@
-/** Mock calendar events for development and testing */
+/**
+ * Mock calendar events for development and testing.
+ * 
+ * These events are based on a reference date (December 16, 2025) and provide
+ * realistic data for:
+ * - Various event types (meetings, holidays, all-day events)
+ * - Different time ranges and durations
+ * - Multiple events per day scenarios
+ * - Event overflow testing (5+ events on Dec 22)
+ */
 
 import { CalendarEvent } from '../calendar/types';
 
+/** Reference date for consistent mock data generation */
 const REFERENCE_DATE = new Date(2025, 11, 16);
 const REFERENCE_YEAR = REFERENCE_DATE.getFullYear();
 const REFERENCE_MONTH = REFERENCE_DATE.getMonth();
@@ -174,10 +184,28 @@ export const MOCK_EVENTS: CalendarEvent[] = [
   },
 ];
 
+/**
+ * Returns the complete array of mock calendar events.
+ * 
+ * @returns Array of mock CalendarEvent objects for December 2025
+ * 
+ * @example
+ * const events = getMockEvents();
+ * console.log(events.length); // 20 events
+ */
 export function getMockEvents(): CalendarEvent[] {
   return MOCK_EVENTS;
 }
 
+/**
+ * Filters mock events to return only those occurring on a specific date.
+ * 
+ * @param date - The target date to filter events for
+ * @returns Array of events that occur on the specified date
+ * 
+ * @example
+ * const todayEvents = getMockEventsForDate(new Date());
+ */
 export function getMockEventsForDate(date: Date): CalendarEvent[] {
   return MOCK_EVENTS.filter((event) => {
     const eventDate = new Date(event.date);
@@ -190,6 +218,16 @@ export function getMockEventsForDate(date: Date): CalendarEvent[] {
   });
 }
 
+/**
+ * Filters mock events to return only those occurring in a specific month.
+ * 
+ * @param year - The target year (e.g., 2025)
+ * @param month - The target month (0-11, where 0 is January)
+ * @returns Array of events that occur in the specified month
+ * 
+ * @example
+ * const decemberEvents = getMockEventsForMonth(2025, 11); // December 2025
+ */
 export function getMockEventsForMonth(year: number, month: number): CalendarEvent[] {
   return MOCK_EVENTS.filter((event) => {
     const eventDate = new Date(event.date);
