@@ -1,159 +1,99 @@
 import { test, expect } from '@playwright/test';
+import { CalendarPage } from './pages/CalendarPage';
 
 test.describe('Calendar Grid Display', () => {
+  let calendarPage: CalendarPage;
+
   test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:3000');
+    calendarPage = new CalendarPage(page);
+    await calendarPage.goto();
   });
 
-  test('should display calendar grid with 6 rows', async ({ page }) => {
-    const table = page.locator('table');
-    await expect(table).toBeVisible();
+  test('should display calendar grid with 6 rows', async () => {
+    await expect(calendarPage.calendarTable).toBeVisible();
 
-    const rows = page.locator('table tbody tr');
-    const rowCount = await rows.count();
+    const rowCount = await calendarPage.getRowCount();
     expect(rowCount).toBe(6);
   });
 
-  test('should display 7 columns (days of week)', async ({ page }) => {
-    const firstRow = page.locator('table tbody tr').first();
-    const cells = firstRow.locator('td');
-    const cellCount = await cells.count();
+  test('should display 7 columns (days of week)', async () => {
+    const cellCount = await calendarPage.getColumnCount();
     expect(cellCount).toBe(7);
   });
 
-  test('should show week headers Mon-Sun', async ({ page }) => {
-    const headers = page.locator('table thead th');
-    const headerTexts = await headers.allTextContents();
+  test('should show week headers Mon-Sun', async () => {
+    const headerText = await calendarPage.getWeekHeadersJoined();
 
     const expectedDays = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
     expectedDays.forEach((day) => {
-      expect(headerTexts.join('')).toContain(day);
+      expect(headerText).toContain(day);
     });
   });
 
-  test('should highlight today with special styling', async ({ page }) => {
-    // Check if today button exists - it should have special background color
-    const allButtons = page.locator('tbody button');
-    const count = await allButtons.count();
-    
-    // At least one button should be visible
+  test('should highlight today with special styling', async () => {
+    const count = await calendarPage.getDayButtonCount();
     expect(count).toBeGreaterThan(0);
     
-    // Check for today styling via computed style
-    const buttons = await allButtons.all();
-    let foundToday = false;
-    
-    for (const button of buttons) {
-      const bgColor = await button.evaluate((el) => {
-        const computed = window.getComputedStyle(el);
-        return computed.backgroundColor;
-      });
-      
-      // Today button has distinctive background color (rgb(59, 130, 246) or similar)
-      if (bgColor !== 'rgba(0, 0, 0, 0)' && bgColor !== 'rgb(255, 255, 255)') {
-        foundToday = true;
-        break;
-      }
-    }
-    
-    expect(foundToday).toBe(true);
+    const isTodayHighlighted = await calendarPage.isTodayHighlighted();
+    expect(isTodayHighlighted).toBe(true);
   });
 
-  test('should have navigation buttons', async ({ page }) => {
-    const prevButton = page.locator('button[aria-label="Previous month"]');
-    const nextButton = page.locator('button[aria-label="Next month"]');
-    const todayButton = page.locator('button[aria-label="Go to today"]');
-
-    await expect(prevButton).toBeVisible();
-    await expect(nextButton).toBeVisible();
-    await expect(todayButton).toBeVisible();
+  test('should have navigation buttons', async () => {
+    await expect(calendarPage.previousMonthButton).toBeVisible();
+    await expect(calendarPage.nextMonthButton).toBeVisible();
+    await expect(calendarPage.todayButton).toBeVisible();
   });
 
-  test('should navigate to next month', async ({ page }) => {
-    const monthHeader = page.locator('h2').first();
-    const initialText = await monthHeader.textContent();
+  test('should navigate to next month', async () => {
+    const initialText = await calendarPage.getMonthYearText();
 
-    const nextButton = page.locator('button[aria-label="Next month"]');
-    await nextButton.click();
+    await calendarPage.goToNextMonth();
 
-    await page.waitForTimeout(300);
-    const updatedText = await monthHeader.textContent();
-
+    const updatedText = await calendarPage.getMonthYearText();
     expect(initialText).not.toBe(updatedText);
   });
 
-  test('should navigate to previous month', async ({ page }) => {
-    const monthHeader = page.locator('h2').first();
-    const initialText = await monthHeader.textContent();
+  test('should navigate to previous month', async () => {
+    const initialText = await calendarPage.getMonthYearText();
 
-    const prevButton = page.locator('button[aria-label="Previous month"]');
-    await prevButton.click();
+    await calendarPage.goToPreviousMonth();
 
-    await page.waitForTimeout(300);
-    const updatedText = await monthHeader.textContent();
-
+    const updatedText = await calendarPage.getMonthYearText();
     expect(initialText).not.toBe(updatedText);
   });
 
-  test('should return to today on today button click', async ({ page }) => {
-    const nextButton = page.locator('button[aria-label="Next month"]');
-    await nextButton.click();
-
-    const todayButton = page.locator('button[aria-label="Go to today"]');
-    await todayButton.click();
-
-    await page.waitForTimeout(300);
+  test('should return to today on today button click', async () => {
+    await calendarPage.goToNextMonth();
+    await calendarPage.goToToday();
     
-    // Check if today is highlighted via background color
-    const allButtons = page.locator('tbody button');
-    const buttons = await allButtons.all();
-    let foundToday = false;
-    
-    for (const button of buttons) {
-      const bgColor = await button.evaluate((el) => {
-        const computed = window.getComputedStyle(el);
-        return computed.backgroundColor;
-      });
-      
-      if (bgColor !== 'rgba(0, 0, 0, 0)' && bgColor !== 'rgb(255, 255, 255)') {
-        foundToday = true;
-        break;
-      }
-    }
-    
-    expect(foundToday).toBe(true);
+    const isTodayHighlighted = await calendarPage.isTodayHighlighted();
+    expect(isTodayHighlighted).toBe(true);
   });
 
   test('should be responsive on mobile viewport', async ({ page }) => {
-    await page.setViewportSize({ width: 375, height: 667 });
+    await calendarPage.setMobileViewport();
 
-    const table = page.locator('table');
-    await expect(table).toBeVisible();
+    await expect(calendarPage.calendarTable).toBeVisible();
 
-    const rows = page.locator('table tbody tr');
-    const rowCount = await rows.count();
+    const rowCount = await calendarPage.getRowCount();
     expect(rowCount).toBe(6);
   });
 
   test('should be responsive on tablet viewport', async ({ page }) => {
-    await page.setViewportSize({ width: 768, height: 1024 });
+    await calendarPage.setTabletViewport();
 
-    const table = page.locator('table');
-    await expect(table).toBeVisible();
+    await expect(calendarPage.calendarTable).toBeVisible();
 
-    const rows = page.locator('table tbody tr');
-    const rowCount = await rows.count();
+    const rowCount = await calendarPage.getRowCount();
     expect(rowCount).toBe(6);
   });
 
   test('should be responsive on desktop viewport', async ({ page }) => {
-    await page.setViewportSize({ width: 1920, height: 1080 });
+    await calendarPage.setDesktopViewport();
 
-    const table = page.locator('table');
-    await expect(table).toBeVisible();
+    await expect(calendarPage.calendarTable).toBeVisible();
 
-    const rows = page.locator('table tbody tr');
-    const rowCount = await rows.count();
+    const rowCount = await calendarPage.getRowCount();
     expect(rowCount).toBe(6);
   });
 });

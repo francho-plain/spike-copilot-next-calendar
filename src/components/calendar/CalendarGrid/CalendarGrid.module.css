@@ -87,10 +87,18 @@
   background-color: var(--color-surface-hover);
 }
 
+/* Style today's date - multiple selectors for reliability */
+.rdpCalendar :global(td.today button),
+.rdpCalendar :global(.today) button,
+.rdpCalendar :global(.rdp-day_button[aria-current="date"]),
+.rdpCalendar :global(button[aria-current="date"]),
+.rdpCalendar :global(.rdp-day_today button),
+.rdpCalendar :global(button.rdp-day_today),
 .rdpCalendar :global(button.today) {
   background-color: var(--color-today) !important;
-  font-weight: 700;
-  color: white;
+  font-weight: 700 !important;
+  color: white !important;
+  border: 2px solid var(--color-primary-dark) !important;
 }
 
 .rdpCalendar :global(button.overflow) {
